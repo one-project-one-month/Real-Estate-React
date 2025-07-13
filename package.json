@@ -4,8 +4,7 @@
   "private": true,
   "workspaces": [
     "admin",
-    "client",
-    "packages/ui"
+    "client"
   ],
   "scripts": {
     "dev": "run-p dev:admin dev:client",
@@ -14,6 +13,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-tooltip": "^1.2.7",
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.10",
     "@tanstack/react-query": "^4.29.12",
     "axios": "^1.4.0",
     "clsx": "^1.2.1",

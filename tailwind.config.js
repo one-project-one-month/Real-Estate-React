@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./**/*.{js,ts,jsx,tsx,html}'],
+  content: [
+    './admin/**/*.{js,ts,jsx,tsx}',
+    './client/**/*.{js,ts,jsx,tsx}',
+    './shared/ui/src/**/*.{js,ts,jsx,tsx}',
+  ],
+  darkMode: ['class', '.dark'],
   theme: {
     extend: {
       borderRadius: {
@@ -42,15 +47,16 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        chart: {
-          1: 'hsl(var(--chart-1))',
-          2: 'hsl(var(--chart-2))',
-          3: 'hsl(var(--chart-3))',
-          4: 'hsl(var(--chart-4))',
-          5: 'hsl(var(--chart-5))',
-        },
+      },
+      boxShadow: {
+        xs: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'class',
+    }),
+    require('@tailwindcss/container-queries'),
+  ],
 };

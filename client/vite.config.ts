@@ -7,9 +7,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@ui': path.resolve(__dirname, '../../ui'),
-      '@utils': path.resolve(__dirname, '../../packages/utils/src'),
-      '@api': path.resolve(__dirname, '../../packages/api/src'),
+      '@ui': path.resolve(__dirname, '../shared/ui/src'),
+      '@utils': path.resolve(__dirname, '../shared/utils/src'),
+      '@api': path.resolve(__dirname, '../shared/api/src'),
       '@mocks': path.resolve(__dirname, '../mocks'),
     },
   },

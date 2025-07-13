@@ -10,7 +10,9 @@ const App = () => {
           <Route
             path="/"
             element={
-              <Button onClick={() => toast.success('Hello!')}>Click me</Button>
+              <Button variant="default" onClick={() => toast.success('Hello!')}>
+                Click me
+              </Button>
             }
           />
         </Routes>

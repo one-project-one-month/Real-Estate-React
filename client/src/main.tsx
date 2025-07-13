@@ -5,8 +5,8 @@ import './styles/index.css';
 import { Toaster } from 'sonner';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  <>
     <Toaster position="top-center" />
     <App />
-  </StrictMode>
+  </>
 );

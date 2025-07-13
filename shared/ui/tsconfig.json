@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@/": ["./*"],
+      "@/": ["./"],
       "@ui": ["shared/ui/src/"],
       "@utils": ["shared/utils/src/"],
       "@api": ["shared/api/src/"],

@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.625rem;
+
+  --background: 154 87% 93%; /* #ebfef8 */
+  --foreground: 190 38% 14%; /* #1a3234 */
+
+  --card: 0 0% 100%; /* #ffffff */
+  --card-foreground: 190 38% 14%; /* #1a3234 */
+
+  --popover: 0 0% 100%; /* #ffffff */
+  --popover-foreground: 190 38% 14%; /* #1a3234 */
+
+  --primary: 168 97% 16%; /* #014e44 */
+  --primary-foreground: 154 87% 93%; /* #ebfef8 */
+
+  --secondary: 164 97% 20%; /* #028070 */
+  --secondary-foreground: 154 87% 93%; /* #ebfef8 */
+
+  --muted: 150 54% 95%; /* #f0f9f7 */
+  --muted-foreground: 190 38% 14%; /* #1a3234 */
+
+  --accent: 69 94% 55%; /* #d1f811 */
+  --accent-foreground: 168 97% 16%; /* #014e44 */
+
+  --destructive: 0 100% 60%; /* #ff4444 */
+  --destructive-foreground: 0 0% 100%; /* #ffffff */
+
+  --border: 164 97% 20%; /* #028070 */
+  --input: 150 54% 95%; /* #f0f9f7 */
+  --ring: 168 97% 16%; /* #014e44 */
+
+  --chart-1: 168 97% 16%; /* #014e44 */
+  --chart-2: 164 97% 20%; /* #028070 */
+  --chart-3: 69 94% 55%; /* #d1f811 */
+  --chart-4: 190 38% 14%; /* #1a3234 */
+  --chart-5: 154 87% 93%; /* #ebfef8 */
+}
+
+.dark {
+  --background: 190 38% 14%; /* #1a3234 */
+  --foreground: 154 87% 93%; /* #ebfef8 */
+
+  --card: 190 38% 14%; /* #1a3234 */
+  --card-foreground: 154 87% 93%; /* #ebfef8 */
+
+  --popover: 190 38% 14%; /* #1a3234 */
+  --popover-foreground: 154 87% 93%; /* #ebfef8 */
+
+  --primary: 154 87% 93%; /* #ebfef8 */
+  --primary-foreground: 168 97% 16%; /* #014e44 */
+
+  --secondary: 164 97% 18%; /* #026658 */
+  --secondary-foreground: 154 87% 93%; /* #ebfef8 */
+
+  --muted: 162 17% 24%; /* #2d3d3a */
+  --muted-foreground: 154 87% 93%; /* #ebfef8 */
+
+  --accent: 77 98% 46%; /* #c0e905 */
+  --accent-foreground: 168 97% 16%; /* #014e44 */
+
+  --destructive: 0 100% 70%; /* #ff6666 */
+  --destructive-foreground: 0 0% 100%; /* #ffffff */
+
+  --border: 164 97% 18%; /* #026658 */
+  --input: 162 17% 24%; /* #2d3d3a */
+  --ring: 154 87% 93%; /* #ebfef8 */
+
+  --chart-1: 154 87% 93%; /* #ebfef8 */
+  --chart-2: 69 94% 55%; /* #d1f811 */
+  --chart-3: 164 97% 20%; /* #028070 */
+  --chart-4: 0 0% 100%; /* #ffffff */
+  --chart-5: 168 97% 16%; /* #014e44 */
+}
