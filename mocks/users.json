@@ -1,0 +1,104 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin_user",
+      "email": "admin@example.com",
+      "photo": "/images/profiles/admin.jpg",
+      "password": "hashed_password_1",
+      "roleId": 1,
+      "createdAt": "2025-01-01T00:00:00Z",
+      "updatedAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "username": "john_agent",
+      "email": "john@agent.com",
+      "photo": "/images/profiles/john.jpg",
+      "password": "hashed_password_2",
+      "roleId": 3,
+      "createdAt": "2025-01-02T00:00:00Z",
+      "updatedAt": "2025-01-02T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "username": "alice_owner",
+      "email": "alice@owner.com",
+      "photo": "/images/profiles/alice.jpg",
+      "password": "hashed_password_3",
+      "roleId": 2,
+      "createdAt": "2025-01-03T00:00:00Z",
+      "updatedAt": "2025-01-03T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "username": "sarah_agent",
+      "email": "sarah@agent.com",
+      "photo": "/images/profiles/sarah.jpg",
+      "password": "hashed_password_4",
+      "roleId": 3,
+      "createdAt": "2025-01-04T00:00:00Z",
+      "updatedAt": "2025-01-04T00:00:00Z"
+    },
+    {
+      "id": 5,
+      "username": "mike_owner",
+      "email": "mike@owner.com",
+      "photo": "/images/profiles/mike.jpg",
+      "password": "hashed_password_5",
+      "roleId": 2,
+      "createdAt": "2025-01-05T00:00:00Z",
+      "updatedAt": "2025-01-05T00:00:00Z"
+    },
+    {
+      "id": 6,
+      "username": "emma_agent",
+      "email": "emma@agent.com",
+      "photo": "/images/profiles/emma.jpg",
+      "password": "hashed_password_6",
+      "roleId": 3,
+      "createdAt": "2025-01-06T00:00:00Z",
+      "updatedAt": "2025-01-06T00:00:00Z"
+    },
+    {
+      "id": 7,
+      "username": "david_owner",
+      "email": "david@owner.com",
+      "photo": "/images/profiles/david.jpg",
+      "password": "hashed_password_7",
+      "roleId": 2,
+      "createdAt": "2025-01-07T00:00:00Z",
+      "updatedAt": "2025-01-07T00:00:00Z"
+    },
+    {
+      "id": 8,
+      "username": "lisa_agent",
+      "email": "lisa@agent.com",
+      "photo": "/images/profiles/lisa.jpg",
+      "password": "hashed_password_8",
+      "roleId": 3,
+      "createdAt": "2025-01-08T00:00:00Z",
+      "updatedAt": "2025-01-08T00:00:00Z"
+    },
+    {
+      "id": 9,
+      "username": "peter_owner",
+      "email": "peter@owner.com",
+      "photo": "/images/profiles/peter.jpg",
+      "password": "hashed_password_9",
+      "roleId": 2,
+      "createdAt": "2025-01-09T00:00:00Z",
+      "updatedAt": "2025-01-09T00:00:00Z"
+    },
+    {
+      "id": 10,
+      "username": "admin2_user",
+      "email": "admin2@example.com",
+      "photo": "/images/profiles/admin2.jpg",
+      "password": "hashed_password_10",
+      "roleId": 1,
+      "createdAt": "2025-01-10T00:00:00Z",
+      "updatedAt": "2025-01-10T00:00:00Z"
+    }
+  ]
+}

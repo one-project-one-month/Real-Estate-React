@@ -1,0 +1,28 @@
+{
+  "owner_profiles": [
+    {
+      "id": 1,
+      "userId": 3,
+      "nrcNo": "12/ABC(N)123456",
+      "address": "123 Main St, Downtown"
+    },
+    {
+      "id": 2,
+      "userId": 5,
+      "nrcNo": "12/XYZ(N)234567",
+      "address": "456 Park Avenue, Uptown"
+    },
+    {
+      "id": 3,
+      "userId": 7,
+      "nrcNo": "12/DEF(N)345678",
+      "address": "789 Lake View, Suburb"
+    },
+    {
+      "id": 4,
+      "userId": 9,
+      "nrcNo": "12/GHI(N)456789",
+      "address": "321 River Road, Downtown"
+    }
+  ]
+}
