@@ -2,52 +2,52 @@
   "user_photos": [
     {
       "id": 1,
-      "path": "/images/users/user1-1.jpg",
+      "path": "user1.png",
       "userId": 1
     },
     {
       "id": 2,
-      "path": "/images/users/user2-1.jpg",
+      "path": "user1.png",
       "userId": 2
     },
     {
       "id": 3,
-      "path": "/images/users/user3-1.jpg",
+      "path": ".user1.png",
       "userId": 3
     },
     {
       "id": 4,
-      "path": "/images/users/user4-1.jpg",
+      "path": ".user1.png",
       "userId": 4
     },
     {
       "id": 5,
-      "path": "/images/users/user5-1.jpg",
+      "path": ".user1.png",
       "userId": 5
     },
     {
       "id": 6,
-      "path": "/images/users/user6-1.jpg",
+      "path": ".user1.png",
       "userId": 6
     },
     {
       "id": 7,
-      "path": "/images/users/user7-1.jpg",
+      "path": "user1.png",
       "userId": 7
     },
     {
       "id": 8,
-      "path": "/images/users/user8-1.jpg",
+      "path": "user1.png",
       "userId": 8
     },
     {
       "id": 9,
-      "path": "/images/users/user9-1.jpg",
+      "path": "user1.png",
       "userId": 9
     },
     {
       "id": 10,
-      "path": "/images/users/user10-1.jpg",
+      "path": "user1.png",
       "userId": 10
     }
   ]
