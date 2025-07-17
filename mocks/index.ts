@@ -8,6 +8,10 @@ import posts from './posts.json';
 import propertyPhotos from './property-photos.json';
 import userPhotos from './user-photos.json';
 import ratings from './ratings.json';
+import allActivities from './all-activities.json';
+import passwordResetTokens from './password-reset-tokens.json';
+import permissions from './permissions.json';
+import rolePermissions from './role-permissions.json';
 
 export const mockData = {
   users: users.users,
@@ -20,6 +24,10 @@ export const mockData = {
   propertyPhotos: propertyPhotos.property_photos,
   userPhotos: userPhotos.user_photos,
   ratings: ratings.ratings,
+  allActivities: allActivities.all_activities,
+  passwordResetTokens: passwordResetTokens.password_reset_tokens,
+  permissions: permissions.permissions,
+  rolePermissions: rolePermissions.role_permissions,
 };
 
 export default mockData;

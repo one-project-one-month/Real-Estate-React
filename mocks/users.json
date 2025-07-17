@@ -99,6 +99,106 @@
       "roleId": 1,
       "createdAt": "2025-01-10T00:00:00Z",
       "updatedAt": "2025-01-10T00:00:00Z"
+    },
+    {
+      "id": 11,
+      "username": "jane_agent",
+      "email": "jane@agent.com",
+      "photo": "/images/profiles/jane.jpg",
+      "password": "hashed_password_11",
+      "roleId": 3,
+      "createdAt": "2025-01-11T00:00:00Z",
+      "updatedAt": "2025-01-11T00:00:00Z"
+    },
+    {
+      "id": 12,
+      "username": "oliver_owner",
+      "email": "oliver@owner.com",
+      "photo": "/images/profiles/oliver.jpg",
+      "password": "hashed_password_12",
+      "roleId": 2,
+      "createdAt": "2025-01-12T00:00:00Z",
+      "updatedAt": "2025-01-12T00:00:00Z"
+    },
+    {
+      "id": 13,
+      "username": "lucas_agent",
+      "email": "lucas@agent.com",
+      "photo": "/images/profiles/lucas.jpg",
+      "password": "hashed_password_13",
+      "roleId": 3,
+      "createdAt": "2025-01-13T00:00:00Z",
+      "updatedAt": "2025-01-13T00:00:00Z"
+    },
+    {
+      "id": 14,
+      "username": "sophia_owner",
+      "email": "sophia@owner.com",
+      "photo": "/images/profiles/sophia.jpg",
+      "password": "hashed_password_14",
+      "roleId": 2,
+      "createdAt": "2025-01-14T00:00:00Z",
+      "updatedAt": "2025-01-14T00:00:00Z"
+    },
+    {
+      "id": 15,
+      "username": "noah_agent",
+      "email": "noah@agent.com",
+      "photo": "/images/profiles/noah.jpg",
+      "password": "hashed_password_15",
+      "roleId": 3,
+      "createdAt": "2025-01-15T00:00:00Z",
+      "updatedAt": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": 16,
+      "username": "mia_owner",
+      "email": "mia@owner.com",
+      "photo": "/images/profiles/mia.jpg",
+      "password": "hashed_password_16",
+      "roleId": 2,
+      "createdAt": "2025-01-16T00:00:00Z",
+      "updatedAt": "2025-01-16T00:00:00Z"
+    },
+    {
+      "id": 17,
+      "username": "liam_agent",
+      "email": "liam@agent.com",
+      "photo": "/images/profiles/liam.jpg",
+      "password": "hashed_password_17",
+      "roleId": 3,
+      "createdAt": "2025-01-17T00:00:00Z",
+      "updatedAt": "2025-01-17T00:00:00Z"
+    },
+    {
+      "id": 18,
+      "username": "ava_owner",
+      "email": "ava@owner.com",
+      "photo": "/images/profiles/ava.jpg",
+      "password": "hashed_password_18",
+      "roleId": 2,
+      "createdAt": "2025-01-18T00:00:00Z",
+      "updatedAt": "2025-01-18T00:00:00Z"
+    },
+    {
+      "id": 19,
+      "username": "william_agent",
+      "email": "william@agent.com",
+      "photo": "/images/profiles/william.jpg",
+      "password": "hashed_password_19",
+      "roleId": 3,
+      "createdAt": "2025-01-19T00:00:00Z",
+      "updatedAt": "2025-01-19T00:00:00Z"
+    },
+    {
+      "id": 20,
+      "username": "ella_owner",
+      "email": "ella@owner.com",
+      "photo": "/images/profiles/ella.jpg",
+      "password": "hashed_password_20",
+      "roleId": 2,
+      "createdAt": "2025-01-20T00:00:00Z",
+      "updatedAt": "2025-01-20T00:00:00Z"
     }
   ]
 }
