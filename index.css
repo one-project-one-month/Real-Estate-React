@@ -43,6 +43,14 @@
   --gradientend: 0 0% 100%; /* white */
   --gray: 0 0% 0% / 0.2; /* #000000 @ 20% */
   --buttonhover: 216 100% 90%; /* #DAECFF */
+
+  --info: 0 0% 93.7%; /* #EEEEEF */
+  --info-foreground: 0 0% 5.5%; /* #090909 */
+
+  --gradientads: 211 36% 31%; /* #33526E */
+  --gradientads-foreground: 211 36% 31%; /* #33526E */
+
+  --gold: 43 44% 49%; /* #B4964A */
 }
 
 .dark {
