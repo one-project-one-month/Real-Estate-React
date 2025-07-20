@@ -8,4 +8,19 @@ export type LoginResponse = {
   accessToken: string;
 };
 
-export type RegisterRequest = {};
+export type RegisterRequest = {
+  username: string;
+  email: string;
+  password: string;
+  roleId: number;
+  photo: string;
+};
+
+export type RegisterResponse = {
+  id: number;
+  username: string;
+  email: string;
+  roleId: number;
+  createdAt: string;
+  updatedAt: string;
+};

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { PasswordInput, Input } from './Input';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { LoginRequest, LoginResponse } from '../types/auth.type';
+import { LoginRequest } from '../types/auth.type';
 import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
 import { loginAsync } from '../services/auth.service';
@@ -21,7 +21,6 @@ const LoginForm = () => {
     try {
       const response = await mutation.mutateAsync(data);
       toast.success('Login successful!');
-      console.log('Response:', response);
       navigate('/');
     } catch (error: any) {
       toast.error(error.message ?? 'Login failed');
