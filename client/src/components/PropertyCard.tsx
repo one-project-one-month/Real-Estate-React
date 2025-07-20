@@ -9,7 +9,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
   const nav = useNavigate();
   return (
     <Card variant="default" size="default" className="border border-border">
-      <CardImage src="../../public/property-test.png" alt="" />
+      <CardImage src="/property-test.png" alt="" />
       <CardContent>
         <h3 className="text-lg font-semibold text-black line-clamp-1">{`${property.township}, ${property.street}, ${property.floor}`}</h3>
         <div className="flex flex-wrap items-center gap-2 lg:gap-1 md:flex-nowrap ">
