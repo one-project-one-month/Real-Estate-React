@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
 const cardVariants = cva(
-  'rounded-xl space-y-5 border-transparent border bg-white p-4   transition-all hover:-translate-y-1 duration-300  dark:bg-dark  dark:text-white shadow-xl ',
+  'rounded-xl space-y-5 border-transparent border bg-white p-4   transition-all hover:-translate-y-1 duration-300  dark:bg-dark  dark:text-white shadow',
   {
     variants: {
       variant: {
@@ -58,8 +58,6 @@ const CardImage = ({
     className={cn('w-full rounded-lg h-56 object-cover', className)}
   />
 );
-
-
 
 const CardContent = React.forwardRef<
   HTMLDivElement,

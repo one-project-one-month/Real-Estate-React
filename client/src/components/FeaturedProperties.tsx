@@ -1,29 +1,36 @@
-import { Button, Card, CardImage, CardContent, CardFooter } from '@ui';
+import { Button } from '@ui';
 import mockData from '@mocks';
-const { propertyTypes, properties } = mockData;
-import { ArrowLeft, ArrowRight, Bed, Bath, Home } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { Property } from '../../../types/model.type';
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import PropertyCard from './PropertyCard';
 
-const FeatureHeader = () => {
-  const [selectType, setSelectedType] = useState(0);
+const FeatureHeader = ({
+  selectedType,
+  setSelectedType,
+}: {
+  selectedType: number;
+  setSelectedType: (typeId: number) => void;
+}) => {
   return (
-    <div className="flex flex-col items-center justify-center space-y-3 py-5">
-      <h5 className="text-primary text-lg md:text-xl">Featured Properties</h5>
-      <h2 className="text-2xl font-semibold md:text-3xl pb-3">
+    <div className="flex flex-col items-center justify-center gap-3 py-5">
+      <h5 className="text-sm text-secondary-foreground md:text-base">
+        Featured Properties
+      </h5>
+      <h2 className="mb-2 text-xl font-semibold md:text-2xl">
         Recommended for you
       </h2>
 
       {/* type card */}
-      <div className="flex flex-wrap items-center justify-center  gap-3">
-        {propertyTypes?.slice(0, 6)?.map(({ name, id }) => (
+      <div className="flex flex-wrap items-center justify-center max-w-2xl gap-3">
+        {mockData.propertyTypes?.map(({ name, id }) => (
           <Button
             key={id}
             onClick={() => setSelectedType(id)}
-            variant={selectType === id ? 'default' : 'info'}
-            className="rounded-xl"
-            size="lg"
+            variant={selectedType === id ? 'default' : 'info'}
+            className="text-xs rounded-xl"
+            size="sm"
           >
             {name}
           </Button>
@@ -33,136 +40,47 @@ const FeatureHeader = () => {
   );
 };
 
-const PropertyCard = ({
-  propertyId,
-  image,
-  title,
-  bedrooms,
-  bathrooms,
-  type,
-  price,
-  currency,
-  agent,
-}: {
-  propertyId: number;
-  image: string;
-  title: string;
-  bedrooms: number;
-  bathrooms: number;
-  type: number | string;
-  price: number | string;
-  currency: string;
-  agent: number | string;
-}) => {
-  const nav = useNavigate();
+const PropertyCardGroup = ({ selectedTypeId }: { selectedTypeId: number }) => {
+  const [filteredList, setFilteredList] = useState<Property[]>(
+    mockData.properties
+  );
+
+  // filter by type
+  useEffect(() => {
+    if (selectedTypeId !== 0) {
+      const newFilteredList = mockData.properties.filter(
+        (prop) => prop.propertyTypeId === selectedTypeId
+      );
+      console.log(newFilteredList);
+      setFilteredList(newFilteredList);
+    } else {
+      setFilteredList(mockData.properties);
+    }
+  }, [selectedTypeId]);
+
   return (
-    <Card variant="default" size="default" >
-      <CardImage src={image} alt={title} />
-      <CardContent>
-        <h3 className="font-semibold text-black text-lg">{title}</h3>
-        <div className="flex items-center gap-2 lg:gap-1 flex-wrap md:flex-nowrap  ">
-          {bathrooms > 0 && (
-            <Button
-              variant="info"
-              className="rounded-xl    flex items-center gap-1"
-              size="md"
-            >
-              <Bath className="size-4 " /> {bathrooms}-Bathroom
-            </Button>
-          )}
-
-          {bedrooms > 0 && (
-            <Button
-              variant="info"
-              className="rounded-xl flex items-center gap-1"
-              size="md"
-            >
-              <Bed className="size-4" /> {bedrooms}-Bedroom
-            </Button>
-          )}
-
-          <Button
-            variant="info"
-            className="rounded-xl flex items-center gap-1"
-            size="md"
-          >
-            <Home className="size-4" /> Villa
-          </Button>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <div className="text-sm flex items-start gap-4">
-          <div className="flex flex-col items-center">
-            <img
-              className="rounded-full object-cover w-10 h-10  overflow-hidden "
-              src="/agent/agent.png"
-              alt={'agent'}
-            />
-            <p className="text-xs text-black font-semibold ">Agent</p>
-          </div>
-          <div className="flex flex-col font-semibold gap-1 items-start">
-            <p className="text-black">Price</p>
-            <span className="mt-auto text-primary">
-              {price && currency} {price && price?.toLocaleString()}
-            </span>
-          </div>
-        </div>
-        <Button
-        onClick={() => nav(`/property/${propertyId}`)}
-          size="sm"
-          variant="default"
-          className="font-normal py-5 text-xs"
-        >
-          View Property Details
-        </Button>
-      </CardFooter>
-    </Card>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
+      {filteredList.slice(0, 3).map((prop) => (
+        <PropertyCard key={prop.id} property={prop} />
+      ))}
+    </div>
   );
 };
 
-const PropertyCardGroup = () => (
-  <div className=" grid grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-3">
-    {properties?.map(
-      ({
-        id,
-        street,
-        bedRoom,
-        bathRoom,
-        propertyTypeId,
-        currency,
-        price,
-        ownerId,
-      }) => (
-        <PropertyCard
-          key={id}
-          propertyId={id}
-          image={'property-test.png'}
-          title={street}
-          bedrooms={bedRoom}
-          bathrooms={bathRoom}
-          type={propertyTypeId}
-          currency={currency}
-          price={price}
-          agent={ownerId}
-        />
-      )
-    )}
-  </div>
-);
-
+// pagination buttons (not working)
 const Pagination = () => {
   return (
-    <div className="flex items-center gap-2 justify-end my-5">
+    <div className="flex items-center justify-end gap-2 my-5">
       <Button
         variant="info_outline"
-        className="rounded-full h-10 w-10 "
+        className="w-10 h-10 rounded-full "
         size="sm"
       >
         <ArrowLeft className="size-4 " />
       </Button>
       <Button
         variant="info_outline"
-        className="rounded-full h-10 w-10"
+        className="w-10 h-10 rounded-full"
         size="sm"
       >
         <ArrowRight className="size-4 " />
@@ -172,10 +90,15 @@ const Pagination = () => {
 };
 
 const FeaturedProperties = () => {
+  const [selectedType, setSelectedType] = useState<number>(0);
+
   return (
-    <section className="w-full sm:max-w-3xl md:max-4xl lg:max-w-7xl mx-auto  px-4 lg:px-0 py-6">
-      <FeatureHeader />
-      <PropertyCardGroup />
+    <section className="w-full px-4 py-6 mx-auto sm:max-w-3xl md:max-4xl lg:max-w-7xl lg:px-0">
+      <FeatureHeader
+        selectedType={selectedType}
+        setSelectedType={setSelectedType}
+      />
+      <PropertyCardGroup selectedTypeId={selectedType} />
       <Pagination />
     </section>
   );

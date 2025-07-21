@@ -1,33 +1,33 @@
-import users from './users.json';
-import roles from './roles.json';
-import agentProfiles from './agent-profiles.json';
-import ownerProfiles from './owner-profiles.json';
-import propertyTypes from './property-types.json';
-import properties from './properties.json';
-import posts from './posts.json';
-import propertyPhotos from './property-photos.json';
-import userPhotos from './user-photos.json';
-import ratings from './ratings.json';
-import allActivities from './all-activities.json';
-import passwordResetTokens from './password-reset-tokens.json';
-import permissions from './permissions.json';
-import rolePermissions from './role-permissions.json';
+import { agentProfiles } from './agentProfiles';
+import { allActivities } from './allActivities';
+import { ownerProfiles } from './ownerProfiles';
+import { passwordResetTokens } from './passwordResetTokens';
+import { permissions } from './permissions';
+import { posts } from './posts';
+import { properties } from './properties';
+import { propertyPhotos } from './propertyPhotos';
+import { propertyTypes } from './propertyTypes';
+import { ratings } from './ratings';
+import { rolePermissions } from './rolePermissions';
+import { roles } from './roles';
+import { userPhotos } from './userPhotos';
+import { users } from './users';
 
-export const mockData = {
-  users: users.users,
-  roles: roles.roles,
-  agentProfiles: agentProfiles.agent_profiles,
-  ownerProfiles: ownerProfiles.owner_profiles,
-  propertyTypes: propertyTypes.property_types,
-  properties: properties.properties,
-  posts: posts.posts,
-  propertyPhotos: propertyPhotos.property_photos,
-  userPhotos: userPhotos.user_photos,
-  ratings: ratings.ratings,
-  allActivities: allActivities.all_activities,
-  passwordResetTokens: passwordResetTokens.password_reset_tokens,
-  permissions: permissions.permissions,
-  rolePermissions: rolePermissions.role_permissions,
+const mockData = {
+  agentProfiles,
+  allActivities,
+  ownerProfiles,
+  passwordResetTokens,
+  permissions,
+  posts,
+  properties,
+  propertyPhotos,
+  propertyTypes,
+  ratings,
+  rolePermissions,
+  roles,
+  userPhotos,
+  users,
 };
 
 export default mockData;
