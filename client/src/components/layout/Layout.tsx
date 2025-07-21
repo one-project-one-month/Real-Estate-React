@@ -10,7 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <section className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="min-h-[1000px]">{children}</main>
+      <main className="pb-10">{children}</main>
       <Footer />
     </section>
   );

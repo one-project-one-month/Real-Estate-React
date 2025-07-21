@@ -1,8 +1,16 @@
 import { Button } from '@ui';
 import { Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
 
-const SocialBubble = ({ icon: Icon }: { icon: React.ElementType }) => (
-  <div className="flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer bg-secondary text-secondary-foreground hover:scale-105">
+export const SocialBubble = ({
+  icon: Icon,
+  variant,
+}: {
+  icon: React.ElementType;
+  variant: 'primary' | 'secondary' | 'outline';
+}) => (
+  <div
+    className={`flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer ${variant === 'primary' ? 'bg-primary text-primary-foreground' : variant === 'secondary' ? 'bg-secondary text-secondary-foreground' : 'bg-transparent border border-secondary-foreground text-secondary-foreground'} hover:scale-105`}
+  >
     <Icon className="w-4 h-4" />
   </div>
 );
@@ -53,7 +61,7 @@ const EmailSubscription = () => (
       <input
         type="email"
         placeholder="Your email address"
-        className="flex-1 text-sm bg-transparent outline-none"
+        className="flex-1 text-sm text-black bg-transparent outline-none"
       />
       <img
         src="../../assets/send.svg"
@@ -74,10 +82,10 @@ const FooterBottom = () => (
     </div>
 
     <div className="flex gap-2">
-      <SocialBubble icon={Facebook} />
-      <SocialBubble icon={Twitter} />
-      <SocialBubble icon={Linkedin} />
-      <SocialBubble icon={Youtube} />
+      <SocialBubble icon={Facebook} variant="secondary" />
+      <SocialBubble icon={Twitter} variant="secondary" />
+      <SocialBubble icon={Linkedin} variant="secondary" />
+      <SocialBubble icon={Youtube} variant="secondary" />
     </div>
   </div>
 );
