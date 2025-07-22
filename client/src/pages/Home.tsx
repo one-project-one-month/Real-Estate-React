@@ -4,17 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import FeaturedProperties from '../components/FeaturedProperties';
 import Ads from '../components/Ads';
 import Testimonials from '../components/Testimonials';
+import Hero from '../components/Hero';
 
 const Home = () => {
   const navigate = useNavigate();
   return (
     <section className="flex flex-col w-full">
-      <Button variant="link" onClick={() => navigate('login')}>
-        Login
-      </Button>
-      <Button variant="link" onClick={() => navigate('registration')}>
-        Register
-      </Button>
+      <Hero />
       <Ads />
       <FeaturedProperties />
       <Testimonials />
