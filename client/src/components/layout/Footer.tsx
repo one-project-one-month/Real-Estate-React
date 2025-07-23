@@ -73,7 +73,7 @@ const EmailSubscription = () => (
 );
 
 const FooterBottom = () => (
-  <div className="flex flex-col items-center justify-between gap-4 px-5 py-4 md:flex-row bg-primary text-primary-foreground">
+  <div className="flex flex-col items-center justify-between px-5 py-4 md:flex-row bg-primary text-primary-foreground">
     <div className="flex flex-wrap gap-3 text-xs text-center md:text-left">
       <p className="cursor-pointer hover:underline">
         ©2025 Pwel-Sar. All Rights Reserved.
@@ -90,7 +90,7 @@ const FooterBottom = () => (
   </div>
 );
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="w-full mt-auto">
       <FooterCTA />
@@ -99,5 +99,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

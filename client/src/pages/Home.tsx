@@ -1,26 +1,21 @@
-import { Button } from '@ui';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import FeaturedProperties from '../components/FeaturedProperties';
-import Ads from '../components/Ads';
-import Testimonials from '../components/Testimonials';
+import {
+  Hero,
+  Ads,
+  FeaturedProperties,
+  Testimonials,
+  Explore,
+  ExploreCities,
+} from '../components';
 
-const Home = () => {
-  const navigate = useNavigate();
+export const Home = () => {
   return (
-    <section className="flex flex-col w-full">
-      <Button variant="link" onClick={() => navigate('login')}>
-        Login
-      </Button>
-      <Button variant="link" onClick={() => navigate('registration')}>
-        Register
-      </Button>
+    <section className="flex flex-col w-full gap-10">
+      <Hero />
       <Ads />
+      <ExploreCities />
       <FeaturedProperties />
       <Testimonials />
+      <Explore />
     </section>
   );
-  return;
 };
-
-export default Home;

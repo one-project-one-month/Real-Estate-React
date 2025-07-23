@@ -1,12 +1,12 @@
 import { Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
 import React from 'react';
-import { SocialBubble } from '../components/layout/Footer';
+import { SocialBubble } from '../components';
 
 interface AuthPageProps {
   children: React.ReactNode;
 }
 
-const AuthPage = ({ children }: AuthPageProps) => {
+export const AuthPage = ({ children }: AuthPageProps) => {
   return (
     <section className="flex flex-col min-h-screen bg-background">
       <div className="flex items-center justify-center flex-1 w-full">
@@ -29,5 +29,3 @@ const AuthPage = ({ children }: AuthPageProps) => {
     </section>
   );
 };
-
-export default AuthPage;

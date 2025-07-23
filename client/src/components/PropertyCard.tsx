@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatCurrency } from '@utils';
 import mockData from '@mocks';
 
-const PropertyCard = ({ property }: { property: Property }) => {
+export const PropertyCard = ({ property }: { property: Property }) => {
   const nav = useNavigate();
   return (
     <Card variant="default" size="default" className="border border-border">
@@ -71,5 +71,3 @@ const PropertyCard = ({ property }: { property: Property }) => {
     </Card>
   );
 };
-
-export default PropertyCard;

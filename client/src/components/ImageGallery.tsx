@@ -43,7 +43,7 @@ const images: ImageData[] = [
   },
 ];
 
-const ImageGallery: React.FC = () => {
+export const ImageGallery: React.FC = () => {
   // လက်ရှိပြသနေတဲ့ ပုံရဲ့ index ကို state မှာသိမ်းထားမယ်
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -62,15 +62,15 @@ const ImageGallery: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-4 font-sans">
+    <div className="w-full max-w-6xl p-4 mx-auto font-sans">
       {/* Thumbnail Images */}
-      <div className="p-2 bg-blue-500/10 rounded-xl mb-4">
-        <div className="flex space-x-2 overflow-x-auto pb-2">
+      <div className="p-2 mb-4 bg-blue-500/10 rounded-xl">
+        <div className="flex pb-2 space-x-2 overflow-x-auto">
           {images.map((image, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className="flex-shrink-0 rounded-lg overflow-hidden focus:outline-none"
+              className="flex-shrink-0 overflow-hidden rounded-lg focus:outline-none"
             >
               <img
                 src={image.src}
@@ -98,11 +98,11 @@ const ImageGallery: React.FC = () => {
       </div>
 
       {/* Navigation Controls */}
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex items-center justify-center gap-4">
         {/* Previous Button */}
         <button
           onClick={handlePrev}
-          className="p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-transform hover:scale-110"
+          className="p-3 text-white transition-transform bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 hover:scale-110"
         >
           <ChevronLeft size={24} />
         </button>
@@ -122,7 +122,7 @@ const ImageGallery: React.FC = () => {
         {/* Next Button */}
         <button
           onClick={handleNext}
-          className="p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-transform hover:scale-110"
+          className="p-3 text-white transition-transform bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 hover:scale-110"
         >
           <ChevronRight size={24} />
         </button>
@@ -130,5 +130,3 @@ const ImageGallery: React.FC = () => {
     </div>
   );
 };
-
-export default ImageGallery;

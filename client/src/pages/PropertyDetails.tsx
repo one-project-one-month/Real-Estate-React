@@ -10,27 +10,25 @@ import {
   ChevronRight,
   MessageCircle,
 } from 'lucide-react';
-
+import { Button } from '@ui';
 
 interface ImageData {
   src: string;
   alt: string;
 }
 
-
 interface FeatureItemProps {
   children: React.ReactNode;
 }
 
 const FeatureItem: React.FC<FeatureItemProps> = ({ children }) => (
-  <li className="flex h-20 ps-10 items-center gap-3 p-3 text-white bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg shadow-sm">
+  <li className="flex items-center h-20 gap-3 p-3 text-white rounded-lg shadow-sm ps-10 bg-gradient-to-r from-primary to-cyan-400">
     <Zap size={20} />
     <span className="flex-1">{children}</span>
   </li>
 );
 
-const PropertyDetails: React.FC = () => {
-  
+export const PropertyDetails: React.FC = () => {
   const galleryImages: ImageData[] = [
     {
       src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2940&auto=format&fit=crop',
@@ -76,7 +74,6 @@ const PropertyDetails: React.FC = () => {
       src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2940&auto=format&fit=crop',
       alt: 'Villa with swimming pool',
     },
-   
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -91,85 +88,82 @@ const PropertyDetails: React.FC = () => {
     );
 
   return (
-    <div className="bg-white min-h-screen font-sans">
-      <div className="container mx-auto p-4 md:p-8">
+    <div className="min-h-screen font-sans bg-white">
+      <div className="container p-4 mx-auto md:p-8">
         {/* Header Section */}
-        <nav className="text-sm text-gray-500 mb-4" aria-label="Breadcrumb">
-          <ol className="list-none p-0 inline-flex flex-wrap space-x-2 items-center">
+        <nav className="mb-4 text-sm text-gray-500" aria-label="Breadcrumb">
+          <ol className="inline-flex flex-wrap items-center p-0 space-x-2 list-none">
             <li>
-              <a href="#" className="text-blue-600 hover:underline">
+              <a href="#" className="text-primary hover:underline">
                 Home
               </a>
             </li>
             <li>{'>'}</li>
             <li>
-              <a href="#" className="text-blue-600 hover:underline">
+              <a href="#" className="text-primary hover:underline">
                 Property for Sale
               </a>
             </li>
             <li className="hidden sm:inline">{'>'}</li>
             <li>
-              <a
-                href="#"
-                className="text-blue-600 hover:underline mt-1 sm:mt-0"
-              >
+              <a href="#" className="mt-1 text-primary hover:underline sm:mt-0">
                 Residential properties for Sale
               </a>
             </li>
             <li className="hidden sm:inline">{'>'}</li>
             <li className="w-full sm:w-auto">
-              <span className="text-gray-700 mt-1 sm:mt-0">
+              <span className="mt-1 text-gray-700 sm:mt-0">
                 Seaside Serenity Villa
               </span>
             </li>
           </ol>
         </nav>
-        <header className="flex  md:flex-row justify-between items-start md:items-center mb-6">
+        <header className="flex items-start justify-between mb-6 md:flex-row md:items-center">
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+            <h1 className="text-3xl font-bold text-gray-800 md:text-4xl">
               Seaside Serenity Villa
             </h1>
-            <div className="flex items-center gap-2 mt-2 text-gray-600 border border-gray-300 rounded-md px-3 py-1 w-fit">
+            <div className="flex items-center gap-2 px-3 py-1 mt-2 text-gray-600 border border-gray-300 rounded-md w-fit">
               <MapPin size={16} />
               <span>Malibu, California</span>
             </div>
           </div>
-          <div className="mt-4 md:mt-0 text-right">
+          <div className="mt-4 text-right md:mt-0">
             <p className="text-gray-500">Price</p>
-            <p className="text-3xl font-bold text-blue-600">$1,250,000</p>
+            <p className="text-3xl font-bold text-primary">$1,250,000</p>
           </div>
         </header>
 
         {/* Image Gallery Section */}
-        <div className="mb-8 p-4 bg-gray-100 rounded-2xl shadow-inner">
+        <div className="p-4 mb-8 bg-gray-100 shadow-inner rounded-2xl">
           <div className="relative w-full h-[40vh] md:h-[60vh] mb-4">
             <img
               src={galleryImages[currentIndex].src}
               alt={galleryImages[currentIndex].alt}
-              className="w-full h-full object-cover rounded-xl shadow-lg"
+              className="object-cover w-full h-full shadow-lg rounded-xl"
             />
           </div>
           <div className="relative">
-            <div className="flex items-center justify-center space-x-3 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex items-center justify-center pb-2 space-x-3 overflow-x-auto scrollbar-hide">
               {galleryImages.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`flex-shrink-0 w-28 h-20 rounded-lg overflow-hidden transition-all duration-300 ${currentIndex === index ? 'border-4 border-blue-500 ring-2 ring-blue-500' : 'border-4 border-transparent opacity-60 hover:opacity-100'}`}
+                  className={`flex-shrink-0 w-28 h-20 rounded-lg overflow-hidden transition-all duration-300 ${currentIndex === index ? 'border-4 border-primary ring-2 ring-primary' : 'border-4 border-transparent opacity-60 hover:opacity-100'}`}
                 >
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover"
+                    className="object-cover w-full h-full"
                   />
                 </button>
               ))}
             </div>
           </div>
-          <div className="flex justify-center items-center gap-4 mt-4">
+          <div className="flex items-center justify-center gap-4 mt-4">
             <button
               onClick={handlePrev}
-              className="p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform hover:scale-110"
+              className="p-3 text-white transition-transform rounded-full shadow-lg bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary hover:scale-110"
             >
               <ChevronLeft size={24} />
             </button>
@@ -178,44 +172,50 @@ const PropertyDetails: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-blue-600 w-6' : 'bg-gray-300 w-2 hover:bg-gray-400'}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-primary w-6' : 'bg-gray-300 w-2 hover:bg-gray-400'}`}
                 />
               ))}
             </div>
             <button
               onClick={handleNext}
-              className="p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform hover:scale-110"
+              className="p-3 text-white transition-transform rounded-full shadow-lg bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary hover:scale-110"
             >
               <ChevronRight size={24} />
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="space-y-8">
-            <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <div className="p-6 bg-white border border-gray-200 md:p-8 rounded-2xl">
+              <h2 className="mb-4 text-2xl font-bold text-gray-800">
                 Description
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-6">
+              <p className="mb-6 leading-relaxed text-gray-600">
                 Discover your own piece of paradise with the Seaside Serenity
                 Villa. With an open floor plan, breathtaking ocean views from
                 every room, and direct access to a pristine sandy beach, this
                 property is the epitome of coastal living.
               </p>
-              <div className="grid grid-cols-3 divide-x divide-gray-200 text-center pt-4 border-t">
+              <div className="grid grid-cols-3 pt-4 text-center border-t divide-x divide-gray-200">
                 <div className="p-2">
-                  <BedDouble className="mx-auto text-blue-500 mb-2" size={35} />
+                  <BedDouble
+                    className="mx-auto mb-2 text-secondary-foreground"
+                    size={35}
+                  />
                   <p className="text-xl font-bold text-gray-800">04</p>
                   <p className="text-sm text-gray-500">Bedrooms</p>
                 </div>
                 <div className="p-2">
-                  <Bath className="mx-auto text-blue-500 mb-2" size={35} />
+                  <Bath
+                    className="mx-auto mb-2 text-secondary-foreground"
+                    size={35}
+                  />
                   <p className="text-xl font-bold text-gray-800">03</p>
                   <p className="text-sm text-gray-500">Bathrooms</p>
                 </div>
                 <div className="p-2">
-                  <Square className="mx-auto text-blue-500 mb-2" size={35} />
+                  <Square className="mx-auto mb-2 text-primary" size={35} />
                   <p className="text-xl font-bold text-gray-800">2,500</p>
                   <p className="text-sm text-gray-500">Square Feet</p>
                 </div>
@@ -223,38 +223,42 @@ const PropertyDetails: React.FC = () => {
             </div>
 
             {/* --- Agent Info Card  --- */}
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 flex flex-col sm:flex-row items-center gap-6">
+            <div className="flex flex-col items-center gap-6 p-6 bg-white border border-gray-200 rounded-2xl sm:flex-row">
               <img
                 src="https://i.pravatar.cc/150?u=johndoe2"
                 alt="John Doe"
-                className="w-24 h-24 rounded-full object-cover border-4 border-gray-100 flex-shrink-0"
+                className="flex-shrink-0 object-cover w-24 h-24 border-4 border-gray-100 rounded-full"
               />
-              <div className="flex-1 flex flex-col space-y-2 text-center sm:text-left w-full">
-                <div className="flex flex-col sm:flex-row sm:justify-between items-center sm:items-baseline">
+              <div className="flex flex-col flex-1 w-full space-y-2 text-center sm:text-left">
+                <div className="flex flex-col items-center sm:flex-row sm:justify-between sm:items-baseline">
                   <h3 className="text-xl font-bold text-gray-900">John Doe</h3>
-                  <p className="text-sm font-semibold text-red-500 ">
+                  <p className="text-sm font-semibold text-destructive ">
                     REGID: 00123456
                   </p>
                 </div>
 
                 <p className="text-gray-500">Royal Star Real Estate Co.,Ltd</p>
 
-                <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center pt-3 mt-2 border-t gap-2">
-                  <p className="text-lg font-semibold text-blue-600">
+                <div className="flex flex-col items-center justify-center gap-2 pt-3 mt-2 border-t sm:flex-row sm:justify-between">
+                  <p className="text-lg font-semibold text-secondary-foreground">
                     +959777333444
                   </p>
-                  <button className="px-5 py-1.5 text-sm border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 transition-colors w-full sm:w-auto">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="border border-secondary-foreground"
+                  >
                     Details
-                  </button>
+                  </Button>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                  <button className="w-full py-2.5 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                <div className="grid grid-cols-1 gap-3 pt-2 sm:grid-cols-2">
+                  <Button size="lg">
                     <Phone size={16} /> Call
-                  </button>
-                  <button className="w-full py-2.5 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                  </Button>
+                  <Button size="lg">
                     <MessageCircle size={16} /> Message
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -262,8 +266,8 @@ const PropertyDetails: React.FC = () => {
           </div>
 
           {/* Right Column */}
-          <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <div className="p-6 bg-white border border-gray-200 md:p-8 rounded-2xl">
+            <h2 className="mb-4 text-2xl font-bold text-gray-800">
               Key Features and Amenities
             </h2>
             <ul className="space-y-3">
@@ -288,5 +292,3 @@ const PropertyDetails: React.FC = () => {
     </div>
   );
 };
-
-export default PropertyDetails;

@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
 import { loginAsync } from '../services/auth.service';
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -79,5 +79,3 @@ const LoginForm = () => {
     </form>
   );
 };
-
-export default LoginForm;

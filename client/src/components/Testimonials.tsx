@@ -3,7 +3,7 @@ import { Star } from 'lucide-react';
 
 const TestimonialHeader = () => {
   return (
-    <div className="flex items-center justify-between py-5">
+    <div className="flex flex-col items-center justify-between gap-5 py-5 md:flex-row md:gap-0">
       <div className="flex flex-col max-w-2xl space-y-4 text-center md:text-left">
         <h2 className="text-xl font-semibold md:text-3xl ">
           What Our Clients Say
@@ -68,7 +68,7 @@ const TestimonialCardGroup = () => (
   </div>
 );
 
-const Testimonials = () => {
+export const Testimonials = () => {
   return (
     <section className="w-full px-4 py-6 mx-auto sm:max-w-3xl md:max-w-4xl lg:max-w-7xl lg:px-0">
       <TestimonialHeader />
@@ -76,5 +76,3 @@ const Testimonials = () => {
     </section>
   );
 };
-
-export default Testimonials;

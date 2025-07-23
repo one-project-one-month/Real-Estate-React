@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, MapPin, Phone, MessageCircle, Search } from 'lucide-react';
-
+import { Button } from '@ui';
 
 interface Agent {
   refId: string;
@@ -11,43 +11,42 @@ interface Agent {
   imageUrl: string;
 }
 
-// Agent Card 
+// Agent Card
 const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
   return (
-   
-    <div className="bg-white border border-gray-200 rounded-xl shadow-md p-4 relative flex flex-col sm:flex-row sm:items-center gap-5 hover:shadow-lg transition-shadow duration-300">
-      <p className="absolute top-4 right-4 text-red-500 font-bold text-sm">
+    <div className="relative flex flex-col gap-5 p-4 transition-shadow duration-300 bg-white border border-gray-200 shadow-md rounded-xl sm:flex-row sm:items-center hover:shadow-lg">
+      <p className="absolute text-sm font-bold text-red-500 top-4 right-4">
         REF. {agent.refId}
       </p>
 
-      <div className="flex-shrink-0 w-full sm:w-40 flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center flex-shrink-0 w-full gap-4 sm:w-40">
         <img
           src={agent.imageUrl}
           alt={agent.name}
-          className="w-28 h-28 rounded-full object-cover border-4 border-gray-100"
+          className="object-cover border-4 border-gray-100 rounded-full w-28 h-28"
         />
         <div className="w-full space-y-2">
-          <button className="w-full py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2">
+          <Button>
             <Phone size={16} /> Call
-          </button>
-          <button className="w-full py-2 text-sm font-semibold border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 flex items-center justify-center gap-2">
+          </Button>
+          <Button>
             <MessageCircle size={16} /> Message
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* --- Right Column: Info --- */}
-      <div className="flex-1 flex flex-col text-center sm:text-left ms-5">
-        <h3 className="text-xl font-bold text-gray-800 mt-5">{agent.name}</h3>
-        <div className="flex items-center gap-2 text-sm text-blue-600 mt-1 justify-center sm:justify-start">
+      <div className="flex flex-col flex-1 text-center sm:text-left ms-5">
+        <h3 className="mt-5 text-xl font-bold text-gray-800">{agent.name}</h3>
+        <div className="flex items-center justify-center gap-2 mt-1 text-sm text-blue-600 sm:justify-start">
           <Mail size={14} />
           <span>{agent.email}</span>
         </div>
-        <div className="flex items-start gap-2 text-sm text-gray-500 mt-2 justify-center sm:justify-start">
+        <div className="flex items-start justify-center gap-2 mt-2 text-sm text-gray-500 sm:justify-start">
           <MapPin size={14} className="mt-0.5 flex-shrink-0" />
           <span>{agent.address}</span>
         </div>
-        <p className="text-gray-600 text-sm mt-3 leading-relaxed">
+        <p className="mt-3 text-sm leading-relaxed text-gray-600">
           {agent.bio}
         </p>
         <div className="mt-4 text-center sm:text-right">
@@ -60,29 +59,60 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
   );
 };
 
-
 // Main Page Component
-const AgentsPage: React.FC = () => {
+export const AgentsPage: React.FC = () => {
   const agents: Agent[] = [
-    { refId: '123456', name: 'Olivia Carter', email: 'olivia.carter@pwel-sar.com', address: 'No.1, Thiri Myitta Street, Hlaing Township, Yangon', bio: 'Passionate about connecting clients with their dream properties. Olivia brings over 8 years of real estate experience.', imageUrl: 'https://i.pravatar.cc/150?u=olivia' },
-    { refId: '123457', name: 'Benjamin Lee', email: 'ben.lee@pwel-sar.com', address: 'No.2, Oak Street, Kamayut Township, Yangon', bio: 'Specializing in luxury condos and modern family homes. Known for his sharp negotiation skills and market insights.', imageUrl: 'https://i.pravatar.cc/150?u=benjamin' },
-    { refId: '123458', name: 'Sophia Chen', email: 'sophia.chen@pwel-sar.com', address: 'No.3, Pine Avenue, Bahan Township, Yangon', bio: 'With a background in architecture, Sophia has a unique eye for property potential and investment opportunities.', imageUrl: 'https://i.pravatar.cc/150?u=sophia' },
-    { refId: '123459', name: 'Daniel Aung', email: 'daniel.aung@pwel-sar.com', address: 'No.4, Maple Drive, Sanchaung Township, Yangon', bio: 'Ensures a smooth and transparent process for all his clients, from first-time buyers to seasoned investors.', imageUrl: 'https://i.pravatar.cc/150?u=daniel' },
+    {
+      refId: '123456',
+      name: 'Olivia Carter',
+      email: 'olivia.carter@pwel-sar.com',
+      address: 'No.1, Thiri Myitta Street, Hlaing Township, Yangon',
+      bio: 'Passionate about connecting clients with their dream properties. Olivia brings over 8 years of real estate experience.',
+      imageUrl: 'https://i.pravatar.cc/150?u=olivia',
+    },
+    {
+      refId: '123457',
+      name: 'Benjamin Lee',
+      email: 'ben.lee@pwel-sar.com',
+      address: 'No.2, Oak Street, Kamayut Township, Yangon',
+      bio: 'Specializing in luxury condos and modern family homes. Known for his sharp negotiation skills and market insights.',
+      imageUrl: 'https://i.pravatar.cc/150?u=benjamin',
+    },
+    {
+      refId: '123458',
+      name: 'Sophia Chen',
+      email: 'sophia.chen@pwel-sar.com',
+      address: 'No.3, Pine Avenue, Bahan Township, Yangon',
+      bio: 'With a background in architecture, Sophia has a unique eye for property potential and investment opportunities.',
+      imageUrl: 'https://i.pravatar.cc/150?u=sophia',
+    },
+    {
+      refId: '123459',
+      name: 'Daniel Aung',
+      email: 'daniel.aung@pwel-sar.com',
+      address: 'No.4, Maple Drive, Sanchaung Township, Yangon',
+      bio: 'Ensures a smooth and transparent process for all his clients, from first-time buyers to seasoned investors.',
+      imageUrl: 'https://i.pravatar.cc/150?u=daniel',
+    },
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen font-sans">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">Agents</h1>
+    <div className="min-h-screen font-sans bg-gray-50">
+      <div className="container px-4 py-8 mx-auto">
+        <h1 className="mb-6 text-4xl font-bold text-gray-900">Agents</h1>
 
         {/* Search Section */}
-        <div className="mb-8 p-4 bg-white border border-gray-200 rounded-lg">
-          <div className="flex flex-col sm:flex-row gap-4">
+        <div className="p-4 mb-8 bg-white border border-gray-200 rounded-lg">
+          <div className="flex flex-col gap-4 sm:flex-row">
             <div className="relative flex-grow">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <Search className="text-gray-400" size={20} />
               </div>
-              <input type="text" placeholder="Search Agent Name" className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"/>
+              <input
+                type="text"
+                placeholder="Search Agent Name"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              />
             </div>
             <button className="w-full sm:w-auto px-8 py-2.5 font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700">
               Search
@@ -91,15 +121,19 @@ const AgentsPage: React.FC = () => {
         </div>
 
         {/* Breadcrumbs and Title */}
-        <nav className="text-sm text-gray-500 mb-2">
-          <a href="#" className="text-blue-600 hover:underline">Home</a>
+        <nav className="mb-2 text-sm text-gray-500">
+          <a href="#" className="text-blue-600 hover:underline">
+            Home
+          </a>
           <span className="mx-2"></span>
           <span>Agents</span>
         </nav>
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Real Estate Agents in Pwel-Sar</h2>
+        <h2 className="mb-6 text-2xl font-bold text-gray-800">
+          Real Estate Agents in Pwel-Sar
+        </h2>
 
         {/* Agent Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {agents.map((agent) => (
             <AgentCard key={agent.refId} agent={agent} />
           ))}
@@ -108,5 +142,3 @@ const AgentsPage: React.FC = () => {
     </div>
   );
 };
-
-export default AgentsPage;

@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
     "@radix-ui/react-tabs": "^1.1.12",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tanstack/react-query": "^4.29.12",
+    "@tm11/mmgeo": "^1.0.2",
     "axios": "^1.4.0",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
