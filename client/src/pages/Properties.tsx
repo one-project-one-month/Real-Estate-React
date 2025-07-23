@@ -1,42 +1,56 @@
 import mockData from '@mocks';
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export const Properties = () => {
   const [postList, setPostList] = useState([]);
-  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
 
   const searchRegion = params.get('region') || '';
-  const searchPostType = params.get('postType') || 'Sale';
+  const searchPostType = params.get('postType') || 'sale';
   const searchMinPrice = params.get('minPrice') || '';
   const searchMaxPrice = params.get('maxPrice') || '';
   const searchPropertyType = params.get('propertyType') || '';
+  const searchTownship = params.get('township') || '';
 
   useEffect(() => {
     const list = mockData.posts.filter((post) => {
       const prop = mockData.properties.find(
         (property) => property.id === post.propertyId
       );
-      return (
-        (searchRegion ? prop?.region === searchRegion : true) &&
-        (searchPostType ? post.type === searchPostType : true) &&
-        (searchMinPrice
+
+      const matches = {
+        region: searchRegion
+          ? prop?.region.toLowerCase() === searchRegion.toLowerCase()
+          : true,
+        postType: searchPostType
+          ? post.type.toLowerCase() === searchPostType.toLowerCase()
+          : true,
+        minPrice: searchMinPrice
           ? prop && prop.price >= Number(searchMinPrice)
-          : true) &&
-        (searchMaxPrice
+          : true,
+        maxPrice: searchMaxPrice
           ? prop && prop.price <= Number(searchMaxPrice)
-          : true) &&
-        (searchPropertyType
+          : true,
+        propertyType: searchPropertyType
           ? prop &&
             prop.propertyTypeId ===
               mockData.propertyTypes.find(
-                (type) => type.name === searchPropertyType
+                (type) =>
+                  type.name.toLowerCase() === searchPropertyType.toLowerCase()
               )?.id
-          : true)
-      );
+          : true,
+        township: searchTownship
+          ? prop &&
+            prop.township?.trim().toLowerCase() ===
+              searchTownship.trim().toLowerCase()
+          : true,
+      };
+
+      return Object.values(matches).every(Boolean);
     });
+
     setPostList(list);
   }, [
     searchRegion,
@@ -44,6 +58,7 @@ export const Properties = () => {
     searchMinPrice,
     searchMaxPrice,
     searchPropertyType,
+    searchTownship,
   ]);
 
   return (
@@ -57,8 +72,8 @@ export const Properties = () => {
               (property) => property.id === post.propertyId
             );
 
-            const postType = mockData.propertyTypes.find(
-              (type) => type.id === prop.propertyTypeId
+            const propertyType = mockData.propertyTypes.find(
+              (type) => type.id === prop?.propertyTypeId
             );
 
             return (
@@ -69,7 +84,7 @@ export const Properties = () => {
                 {prop && (
                   <div className="p-3 text-sm text-gray-700 rounded bg-gray-50">
                     <p>
-                      <strong>Type:</strong> {postType?.name || 'Unknown'}
+                      <strong>Type:</strong> {propertyType?.name || 'Unknown'}
                     </p>
                     <p>
                       <strong>Location:</strong> {prop.buildingNumber},{' '}

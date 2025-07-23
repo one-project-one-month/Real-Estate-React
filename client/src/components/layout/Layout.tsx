@@ -10,7 +10,7 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <section className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="pb-10">{children}</main>
+      <main className="pb-16">{children}</main>
       <Footer />
     </section>
   );

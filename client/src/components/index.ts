@@ -7,6 +7,9 @@ export * from './LoginForm';
 export * from './RegisterForm';
 export * from './SearchBar';
 export * from './Testimonials';
+export * from './Explore';
+export * from './ExploreCities';
+
 export * from './layout/Footer';
 export * from './layout/Header';
 export * from './layout/Layout';

@@ -3,7 +3,7 @@ import { Star } from 'lucide-react';
 
 const TestimonialHeader = () => {
   return (
-    <div className="flex items-center justify-between py-5">
+    <div className="flex flex-col items-center justify-between gap-5 py-5 md:flex-row md:gap-0">
       <div className="flex flex-col max-w-2xl space-y-4 text-center md:text-left">
         <h2 className="text-xl font-semibold md:text-3xl ">
           What Our Clients Say
