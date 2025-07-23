@@ -23,7 +23,7 @@ const HeaderTab: React.FC<HeaderTabProps> = ({
   );
 };
 
-const Header = () => {
+export const Header = () => {
   return (
     <div className="flex items-center justify-between w-full px-5 py-4 bg-gradient-to-r from-background via-background to-primary">
       <img src={logoSVG} alt="pwel sar logo" className="h-[2.5rem]" />
@@ -40,5 +40,3 @@ const Header = () => {
     </div>
   );
 };
-
-export default Header;

@@ -1,13 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
-import Layout from './components/layout/Layout';
-import Properties from './pages/Properties';
-
-import PropertyDetails from './pages/PropertyDetails';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
-import AuthPage from './pages/AuthPage';
+import { Home, Properties, PropertyDetails, NotFound, AuthPage } from './pages';
+import { Layout, RegisterForm, LoginForm } from './components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const App = () => {

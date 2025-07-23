@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+import { SearchBar } from './SearchBar';
 
-const Hero = () => {
+export const Hero = () => {
   return (
     <section
       className="relative flex flex-col items-center justify-center min-h-[350px] md:min-h-[420px] bg-cover bg-center"
@@ -18,5 +18,3 @@ const Hero = () => {
     </section>
   );
 };
-
-export default Hero;

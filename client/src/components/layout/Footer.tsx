@@ -90,7 +90,7 @@ const FooterBottom = () => (
   </div>
 );
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="w-full mt-auto">
       <FooterCTA />
@@ -99,5 +99,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

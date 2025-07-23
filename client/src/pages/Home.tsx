@@ -1,13 +1,6 @@
-import { Button } from '@ui';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import FeaturedProperties from '../components/FeaturedProperties';
-import Ads from '../components/Ads';
-import Testimonials from '../components/Testimonials';
-import Hero from '../components/Hero';
+import { Hero, Ads, FeaturedProperties, Testimonials } from '../components';
 
-const Home = () => {
-  const navigate = useNavigate();
+export const Home = () => {
   return (
     <section className="flex flex-col w-full">
       <Hero />
@@ -16,7 +9,4 @@ const Home = () => {
       <Testimonials />
     </section>
   );
-  return;
 };
-
-export default Home;

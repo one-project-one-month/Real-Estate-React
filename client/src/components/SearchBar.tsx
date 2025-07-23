@@ -75,7 +75,7 @@ const FilterDropdown = ({
   );
 };
 
-const SearchBar = () => {
+export const SearchBar = () => {
   const [searchQueryParams, setSearchQueryParams] = useState<PostQueryParams>({
     postType: PostType.Sale,
     region: '',
@@ -188,5 +188,3 @@ const SearchBar = () => {
     </div>
   );
 };
-
-export default SearchBar;

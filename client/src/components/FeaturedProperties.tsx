@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Property } from '../../../types/model.type';
 
 import { useEffect, useState } from 'react';
-import PropertyCard from './PropertyCard';
+import { PropertyCard } from './PropertyCard';
 
 const FeatureHeader = ({
   selectedType,
@@ -89,7 +89,7 @@ const Pagination = () => {
   );
 };
 
-const FeaturedProperties = () => {
+export const FeaturedProperties = () => {
   const [selectedType, setSelectedType] = useState<number>(0);
 
   return (
@@ -103,5 +103,3 @@ const FeaturedProperties = () => {
     </section>
   );
 };
-
-export default FeaturedProperties;

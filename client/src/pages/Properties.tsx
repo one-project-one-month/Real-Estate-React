@@ -2,7 +2,7 @@ import mockData from '@mocks';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const Properties = () => {
+export const Properties = () => {
   const [postList, setPostList] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -120,5 +120,3 @@ const Properties = () => {
     </section>
   );
 };
-
-export default Properties;
