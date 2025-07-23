@@ -9,6 +9,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import AuthPage from './pages/AuthPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AgentsPage from './pages/AgentsPage';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -54,6 +55,14 @@ const App = () => {
             element={
               <Layout>
                 <PropertyDetails />
+              </Layout>
+            }
+          />
+          <Route
+            path="/agents"
+            element={
+              <Layout>
+                <AgentsPage />
               </Layout>
             }
           />
