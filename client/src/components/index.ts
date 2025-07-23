@@ -9,6 +9,7 @@ export * from './SearchBar';
 export * from './Testimonials';
 export * from './Explore';
 export * from './ExploreCities';
+export * from './ImageGallery';
 
 export * from './layout/Footer';
 export * from './layout/Header';

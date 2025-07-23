@@ -1,5 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home, Properties, PropertyDetails, NotFound, AuthPage } from './pages';
+import {
+  Home,
+  Properties,
+  PropertyDetails,
+  NotFound,
+  AuthPage,
+  AgentsPage,
+} from './pages';
 import { Layout, RegisterForm, LoginForm } from './components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -47,6 +54,14 @@ const App = () => {
             element={
               <Layout>
                 <PropertyDetails />
+              </Layout>
+            }
+          />
+          <Route
+            path="/agents"
+            element={
+              <Layout>
+                <AgentsPage />
               </Layout>
             }
           />

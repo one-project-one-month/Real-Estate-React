@@ -25,7 +25,7 @@ const HeaderTab: React.FC<HeaderTabProps> = ({
 
 export const Header = () => {
   return (
-    <div className="flex items-center justify-between w-full px-5 py-4 bg-gradient-to-r from-background via-background to-primary">
+    <div className="flex items-center justify-between w-full px-5 py-4 border-b border-border bg-gradient-to-r from-background via-background to-primary">
       <img src={logoSVG} alt="pwel sar logo" className="h-[2.5rem]" />
       <ul className="flex items-center justify-center flex-1 gap-2">
         <HeaderTab variant="secondary">Home</HeaderTab>
