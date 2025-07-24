@@ -7,7 +7,7 @@ export interface PostQueryParams {
   township?: string;
   street?: string;
   propertyType?: string;
-  postType?: PostType;
+  postType?: string;
   minPrice?: number;
   maxPrice?: number;
   search?: string;

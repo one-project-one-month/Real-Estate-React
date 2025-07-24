@@ -7,12 +7,17 @@ import { FolderUp, Menu, X } from 'lucide-react';
 interface HeaderTabProps {
   children: React.ReactNode;
   onClick?: () => void;
+  className?: string;
 }
 
-const HeaderTab: React.FC<HeaderTabProps> = ({ children, onClick }) => {
+const HeaderTab: React.FC<HeaderTabProps> = ({
+  children,
+  onClick,
+  className,
+}) => {
   return (
     <li
-      className="px-4 py-2 text-sm font-medium rounded-md cursor-pointer hover:text-secondary-foreground"
+      className={`px-4 py-2 text-sm font-medium rounded-md cursor-pointer hover:text-secondary-foreground ${className}`}
       onClick={onClick}
     >
       {children}
@@ -86,7 +91,7 @@ export const Header = () => {
   );
 
   return (
-    <nav className="relative flex items-center justify-between w-full px-5 py-4 border-b border-border">
+    <nav className="relative flex items-center justify-between w-full px-5 py-4 border-b border-border bg-gradient-to-r from-background via-background to-primary">
       <div
         className="flex items-center gap-4 cursor-pointer"
         onClick={() => {
@@ -101,7 +106,11 @@ export const Header = () => {
         <ul className="flex items-center gap-2 px-5">{mainNav}</ul>
         <span className="text-2xl font-thin pointer-events-none">|</span>
         <ul className="flex items-center gap-2">{authNav}</ul>
-        <Button size="lg" onClick={() => navigate('/upload')}>
+        <Button
+          size="lg"
+          variant="secondary"
+          onClick={() => navigate('/upload')}
+        >
           <FolderUp size={20} />
           Upload
         </Button>

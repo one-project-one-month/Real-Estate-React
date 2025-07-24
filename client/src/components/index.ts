@@ -5,11 +5,14 @@ export * from './Hero';
 export * from './Input';
 export * from './LoginForm';
 export * from './RegisterForm';
-export * from './SearchBar';
+export * from './PostSearchBar';
 export * from './Testimonials';
 export * from './Explore';
 export * from './ExploreCities';
 export * from './ImageGallery';
+export * from './ExploreOnMap';
+export * from './PostFilterCard';
+export * from './PostListing';
 
 export * from './layout/Footer';
 export * from './layout/Header';
