@@ -1,7 +1,6 @@
-import React from 'react';
 import mockData from '@mocks';
 import { Property } from 'src/types/model.type';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PropertyCard } from '../components/PropertyCard';
 import { PostStatus, PostType } from '../../../types/model.type';
 import { useParams } from 'react-router-dom';
@@ -25,15 +24,28 @@ const PropertyCardGroup = ({ properties }: { properties: Property[] }) => {
 
 const AgentDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const [selectedPostType, setSelectedPostType] = React.useState<'Sale' | 'Rent' | null>('Sale');
+  const [selectedPostStatus, setSelectedPostStatus] = React.useState<'Sold' | 'Rented' | null>('Sold');
 
   const saleProperties = mockData.properties.slice(0, 6).filter((property) => {
     const post = mockData.posts.find((post) => post.propertyId === property.id);
-    return (post && post.type === PostType.Sale)
+    if (!post) return false;
+    if (selectedPostType === 'Sale') {
+      return post.type === PostType.Sale;
+    } else {
+      return post.type === PostType.Rent;
+    }
   });
 
   const soldProperties = mockData.properties.filter((property) => {
     const post = mockData.posts.find((post) => post.propertyId === property.id);
-    return (post && post.status === PostStatus.Sold || post.status === PostStatus.Rented)
+    if (!post) return false;
+    if (selectedPostStatus === 'Sold') {
+      return post.status === PostStatus.Sold;
+    } else if (selectedPostStatus === 'Rented') {
+      return post.status === PostStatus.Rented;
+    }
+    // return (post.status === PostStatus.Sold || post.status === PostStatus.Rented)
   });
 
   return <section className="w-full px-4 py-6 mx-auto sm:max-w-3xl md:max-w-4xl lg:max-w-7xl lg:px-0">
@@ -186,10 +198,18 @@ const AgentDetail = () => {
     </h2>
 
     <div className="py-5 inline-flex rounded-md shadow-sm" role="group">
-      <button type="button" className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700">
+      <button
+        onClick={() => setSelectedPostType('Sale')}
+        type="button"
+        className={`px-4 py-2 text-sm font-medium border border-gray-200 rounded-l-lg ${selectedPostType === 'Sale' ? 'bg-blue-600 text-white' : 'bg-white text-gray-900 hover:bg-gray-100 hover:text-blue-700'}`}
+      >
         Sale
       </button>
-      <button type="button" className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 hover:text-blue-700">
+      <button
+        onClick={() => setSelectedPostType('Rent')}
+        type="button"
+        className={`px-4 py-2 text-sm font-medium border border-gray-200 rounded-r-lg ${selectedPostType === 'Rent' ? 'bg-blue-600 text-white' : 'bg-white text-gray-900 hover:bg-gray-100 hover:text-blue-700'}`}
+      >
         Rent
       </button>
     </div>
@@ -201,10 +221,18 @@ const AgentDetail = () => {
     </h2>
 
     <div className="py-5 inline-flex rounded-md shadow-sm" role="group">
-      <button type="button" className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700">
+      <button
+        onClick={() => setSelectedPostStatus('Sold')}
+        type="button"
+        className={`px-4 py-2 text-sm font-medium border border-gray-200 rounded-l-lg ${selectedPostStatus === 'Sold' ? 'bg-blue-600 text-white' : 'bg-white text-gray-900 hover:bg-gray-100 hover:text-blue-700'}`}
+      >
         Sale
       </button>
-      <button type="button" className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 hover:text-blue-700">
+      <button
+        onClick={() => setSelectedPostStatus('Rented')}
+        type="button"
+        className={`px-4 py-2 text-sm font-medium border border-gray-200 rounded-r-lg ${selectedPostStatus === 'Rented' ? 'bg-blue-600 text-white' : 'bg-white text-gray-900 hover:bg-gray-100 hover:text-blue-700'}`}
+      >
         Rent
       </button>
     </div>
