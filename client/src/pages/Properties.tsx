@@ -4,6 +4,7 @@ import {
   ExploreOnMap,
   PostFilterCard,
   PostListing,
+  BreadcrumbNavigator,
 } from '../components';
 import { PostQueryParams } from 'src/types/post.type';
 import { useEffect, useState } from 'react';
@@ -43,9 +44,17 @@ export const Properties = () => {
   };
 
   return (
-    <section className="flex flex-col w-full">
-      <ExploreOnMap />
-      <div className="flex items-center justify-center w-full px-4 py-8">
+    <section className="flex flex-col w-full gap-10 px-4 py-6 mx-auto sm:max-w-3xl md:max-w-4xl lg:max-w-7xl lg:px-0">
+      <BreadcrumbNavigator
+        paths={[
+          { label: 'Home', href: '/' },
+          {
+            label: 'Properties',
+            isCurrent: true,
+          },
+        ]}
+      />
+      <div className="flex items-center justify-center w-full px-4">
         <PostSearchBar filterIncluded={false} onSearch={handleSearch} />
       </div>
       <section className="grid w-full grid-cols-3 gap-5 px-4 py-8 mx-auto md:flex-row sm:max-w-3xl md:max-w-4xl lg:max-w-7xl">

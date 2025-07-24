@@ -82,7 +82,7 @@ export const PropertyCard = ({
               </span>
             </div>
             <Button
-              onClick={() => nav(`/property/${property.id}`)}
+              onClick={() => nav(`/properties/${property.id}`)}
               variant="default"
               size="lg"
               className="w-full sm:w-auto"
@@ -116,7 +116,7 @@ export const PropertyCard = ({
           </span>
         </div>
         <Button
-          onClick={() => nav(`/property/${property.id}`)}
+          onClick={() => nav(`/properties/${property.id}`)}
           variant="default"
           size="lg"
           className="w-full sm:w-auto"

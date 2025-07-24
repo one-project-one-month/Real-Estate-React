@@ -40,15 +40,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Buy
-      </HeaderTab>
-      <HeaderTab
-        onClick={() => {
-          navigate('/properties?postType=rent');
-          closeMenu();
-        }}
-      >
-        Rent
+        Properties
       </HeaderTab>
       <HeaderTab
         onClick={() => {

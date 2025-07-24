@@ -51,7 +51,7 @@ const App = () => {
             }
           />
           <Route
-            path="/property/:id"
+            path="/properties/:id"
             element={
               <Layout>
                 <PropertyDetails />
@@ -67,7 +67,7 @@ const App = () => {
             }
           />
           <Route
-            path="/agent/:id"
+            path="/agents/:id"
             element={
               <Layout>
                 <AgentDetails />

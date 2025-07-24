@@ -17,6 +17,7 @@ export * from './BreadcrumpNavigator';
 export * from './AgentProfile';
 export * from './AgentContactForm';
 export * from './PropertyCardGroup';
+export * from './AgentCard';
 
 export * from './layout/Footer';
 export * from './layout/Header';
