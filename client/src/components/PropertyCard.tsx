@@ -7,22 +7,38 @@ import mockData from '@mocks';
 
 export const PropertyCard = ({ property }: { property: Property }) => {
   const nav = useNavigate();
+
+  const propertyType = mockData.propertyTypes.find(
+    (type) => type.id === property.propertyTypeId
+  );
+
   return (
-    <Card variant="default" size="default" className="border border-border">
-      <CardImage src="/property-test.png" alt="" />
-      <CardContent>
-        <h3 className="text-lg font-semibold text-black line-clamp-1">{`${property.township}, ${property.street}, ${property.floor}`}</h3>
-        <div className="flex flex-wrap items-center gap-2 lg:gap-1 md:flex-nowrap ">
+    <Card
+      variant="default"
+      size="default"
+      className="flex flex-col justify-between border border-border"
+    >
+      <CardImage
+        src="/property-test.png"
+        alt=""
+        className="object-cover w-full h-48"
+      />
+
+      <CardContent className="flex flex-col gap-3">
+        <h3 className="text-lg font-semibold text-black line-clamp-1">
+          {`${property.township}, ${property.street}, ${property.floor}`}
+        </h3>
+
+        <div className="flex flex-wrap gap-2">
           {property.bathRoom > 0 && (
             <Button
               variant="info"
               className="flex items-center gap-1 text-xs rounded-xl"
               size="sm"
             >
-              <Bath className="size-4 " /> {property.bathRoom}-Bathroom
+              <Bath className="size-4" /> {property.bathRoom}-Bathroom
             </Button>
           )}
-
           {property.bedRoom > 0 && (
             <Button
               variant="info"
@@ -32,38 +48,35 @@ export const PropertyCard = ({ property }: { property: Property }) => {
               <Bed className="size-4" /> {property.bedRoom}-Bedroom
             </Button>
           )}
-
           <Button
             variant="info"
             className="flex items-center gap-1 text-xs rounded-xl"
             size="sm"
           >
             <Home className="size-4" />
-            {
-              mockData.propertyTypes.find(
-                (type) => type.id === property.propertyTypeId
-              ).name
-            }
+            {propertyType?.name}
           </Button>
         </div>
       </CardContent>
-      <CardFooter>
-        <div className="flex items-center justify-center gap-4 text-sm">
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-10 h-10 overflow-hidden rounded-full "
-              src="/agent/agent.png"
-              alt={'agent'}
-            />
-          </div>
-          <span className="font-semibold text-secondary-foreground">
+
+      <CardFooter className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+        <div className="flex items-center gap-3">
+          <img
+            className="object-cover w-10 h-10 rounded-full"
+            src="/agent/agent.png"
+            alt="agent"
+          />
+          <span className="text-sm font-semibold text-secondary-foreground">
             {property.price &&
               formatCurrency(property.price, property.currency)}
           </span>
         </div>
+
         <Button
           onClick={() => nav(`/property/${property.id}`)}
           variant="default"
+          size="sm"
+          className="w-full sm:w-auto"
         >
           View Property Details
         </Button>

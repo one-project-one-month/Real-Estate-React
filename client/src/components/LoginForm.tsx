@@ -30,7 +30,7 @@ export const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleLogin)}
-      className="flex flex-col w-full max-w-md gap-4 p-6 border rounded-lg shadow-md bg-background border-border"
+      className="flex flex-col w-full max-w-md gap-4 p-6 border rounded-lg shadow-md border-border bg-background"
     >
       <div className="flex justify-start w-full mb-4">
         <span

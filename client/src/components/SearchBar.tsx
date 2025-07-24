@@ -110,15 +110,16 @@ export const SearchBar = () => {
   const states = getStates().map((state) => state.getName());
 
   return (
-    <div className="w-full max-w-3xl p-6 bg-white border-t-4 border-blue-500 shadow-md rounded-xl">
-      <div className="relative flex w-full gap-3">
+    <div className="w-full max-w-5xl p-4 bg-white border-t-4 border-blue-500 shadow-md md:p-6 rounded-xl">
+      {/* Top row: PostType, Input, Search Button */}
+      <div className="flex flex-col gap-3 md:flex-row md:gap-3">
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button
               variant="secondary"
-              className="flex items-center h-10 gap-2 px-4 border rounded-md border-border"
+              className="flex items-center w-full h-10 gap-2 px-4 border rounded-md border-border md:w-auto"
             >
-              {searchQueryParams.postType.toUpperCase()}{' '}
+              {searchQueryParams.postType.toUpperCase()}
               <ChevronDown size={16} />
             </Button>
           </DropdownMenuTrigger>
@@ -142,18 +143,19 @@ export const SearchBar = () => {
 
         <Input
           placeholder="Search by keywords"
-          className="h-10 border-border"
+          className="w-full h-10 border-border"
         />
 
         <Button
-          className="h-10 px-6 border border-l-0 rounded-md"
+          className="w-full h-10 px-6 border border-l-0 rounded-md md:w-auto"
           onClick={handleSearch}
         >
           Search
         </Button>
       </div>
 
-      <div className="grid w-full grid-cols-3 mt-3 overflow-hidden rounded-md">
+      {/* Filter dropdowns */}
+      <div className="grid grid-cols-1 gap-3 mt-4 sm:grid-cols-2 md:grid-cols-3">
         <FilterDropdown
           label="Select Region"
           options={states}
