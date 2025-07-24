@@ -118,7 +118,7 @@ export const PropertyCard = ({
         <Button
           onClick={() => nav(`/property/${property.id}`)}
           variant="default"
-          size="sm"
+          size="lg"
           className="w-full sm:w-auto"
         >
           View Property Details

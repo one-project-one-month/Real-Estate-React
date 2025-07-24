@@ -6,10 +6,10 @@ import {
   NotFound,
   AuthPage,
   AgentsPage,
+  AgentDetails,
 } from './pages';
 import { Layout, RegisterForm, LoginForm } from './components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import AgentDetail from './pages/AgentDetail';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -70,7 +70,7 @@ const App = () => {
             path="/agent/:id"
             element={
               <Layout>
-                <AgentDetail />
+                <AgentDetails />
               </Layout>
             }
           />
