@@ -4,19 +4,21 @@ import { Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
 export const SocialBubble = ({
   icon: Icon,
   variant,
+  classname,
 }: {
   icon: React.ElementType;
   variant: 'primary' | 'secondary' | 'outline';
+  classname?: string;
 }) => (
   <div
-    className={`flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer ${variant === 'primary' ? 'bg-primary text-primary-foreground' : variant === 'secondary' ? 'bg-secondary text-secondary-foreground' : 'bg-transparent border border-secondary-foreground text-secondary-foreground'} hover:scale-105`}
+    className={`flex items-center justify-center w-8 h-8 transition rounded-full cursor-pointer ${variant === 'primary' ? 'bg-primary text-primary-foreground' : variant === 'secondary' ? 'bg-secondary text-secondary-foreground' : 'bg-transparent border border-secondary-foreground text-secondary-foreground'} hover:scale-105 ${classname}`}
   >
-    <Icon className="w-4 h-4" />
+    <Icon className={`w-4 h-4 ${classname}`} />
   </div>
 );
 
 const FooterCTA = () => (
-  <div className="relative flex flex-col items-center justify-around gap-4 py-10 overflow-hidden bg-primary text-primary-foreground md:flex-row">
+  <div className="relative flex flex-col items-center justify-around gap-6 px-4 py-10 overflow-hidden bg-primary text-primary-foreground md:flex-row">
     <img
       src="/footer-abstract-1.png"
       className="absolute top-0 left-0 object-cover h-full pointer-events-none brightness-125"
@@ -41,7 +43,7 @@ const FooterCTA = () => (
       </p>
     </div>
 
-    <div className="z-20 mt-6 md:mt-0">
+    <div className="z-20 mt-2 md:mt-0">
       <Button variant="secondary" size="lg">
         Chat Now
       </Button>
@@ -50,19 +52,21 @@ const FooterCTA = () => (
 );
 
 const EmailSubscription = () => (
-  <div className="flex flex-col items-center justify-center py-12 bg-secondary text-secondary-foreground">
-    <img src="../../assets/logo.svg" alt="logo" className="h-[3.5rem]" />
-    <h3 className="mb-8">
+  <div className="flex flex-col items-center justify-center px-4 py-12 bg-secondary text-secondary-foreground">
+    <img src="../../assets/logo.svg" alt="logo" className="h-[3.5rem] mb-4" />
+    <h3 className="mb-6 text-sm text-center md:text-base">
       Enter your email address to get the latest property notifications
     </h3>
 
-    <div className="flex items-center justify-center w-full max-w-2xl gap-3 px-4 py-3 my-5 border rounded-md border-secondary-foreground">
-      <img src="../../assets/mail.svg" className="w-5 h-5" alt="Mail Icon" />
-      <input
-        type="email"
-        placeholder="Your email address"
-        className="flex-1 text-sm text-black bg-transparent outline-none"
-      />
+    <div className="flex items-center w-full max-w-2xl gap-3 px-4 py-3 my-5 border rounded-md sm:flex-row border-secondary-foreground">
+      <div className="flex items-center w-full gap-3">
+        <img src="../../assets/mail.svg" className="w-5 h-5" alt="Mail Icon" />
+        <input
+          type="email"
+          placeholder="Your email address"
+          className="flex-1 text-sm text-black bg-transparent outline-none"
+        />
+      </div>
       <img
         src="../../assets/send.svg"
         className="w-5 h-5 cursor-pointer"
@@ -73,8 +77,8 @@ const EmailSubscription = () => (
 );
 
 const FooterBottom = () => (
-  <div className="flex flex-col items-center justify-between gap-4 px-5 py-4 md:flex-row bg-primary text-primary-foreground">
-    <div className="flex flex-wrap gap-3 text-xs text-center md:text-left">
+  <div className="flex flex-col items-center justify-between gap-3 px-5 py-6 md:flex-row bg-primary text-primary-foreground">
+    <div className="flex flex-wrap justify-center gap-3 text-xs text-center md:justify-start md:text-left">
       <p className="cursor-pointer hover:underline">
         ©2025 Pwel-Sar. All Rights Reserved.
       </p>
@@ -90,7 +94,7 @@ const FooterBottom = () => (
   </div>
 );
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="w-full mt-auto">
       <FooterCTA />
@@ -99,5 +103,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
 import { loginAsync } from '../services/auth.service';
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -30,7 +30,7 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleLogin)}
-      className="flex flex-col w-full max-w-md gap-4 p-6 border rounded-lg shadow-md bg-background border-border"
+      className="flex flex-col w-full max-w-md gap-4 p-6 border rounded-lg shadow-md border-border bg-background"
     >
       <div className="flex justify-start w-full mb-4">
         <span
@@ -79,5 +79,3 @@ const LoginForm = () => {
     </form>
   );
 };
-
-export default LoginForm;

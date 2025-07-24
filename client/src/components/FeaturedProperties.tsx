@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Property } from '../../../types/model.type';
 
 import { useEffect, useState } from 'react';
-import PropertyCard from './PropertyCard';
+import { PropertyCard } from './PropertyCard';
 
 const FeatureHeader = ({
   selectedType,
@@ -14,13 +14,11 @@ const FeatureHeader = ({
   setSelectedType: (typeId: number) => void;
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 py-5">
+    <div className="flex flex-col items-center justify-center gap-3 pb-5">
       <h5 className="text-sm text-secondary-foreground md:text-base">
         Featured Properties
       </h5>
-      <h2 className="mb-2 text-xl font-semibold md:text-2xl">
-        Recommended for you
-      </h2>
+      <h2 className="mb-2 font-semibold md:text-3xl">Recommended For You</h2>
 
       {/* type card */}
       <div className="flex flex-wrap items-center justify-center max-w-2xl gap-3">
@@ -61,7 +59,7 @@ const PropertyCardGroup = ({ selectedTypeId }: { selectedTypeId: number }) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
       {filteredList.slice(0, 3).map((prop) => (
-        <PropertyCard key={prop.id} property={prop} />
+        <PropertyCard key={prop.id} property={prop} variant="square" />
       ))}
     </div>
   );
@@ -70,7 +68,7 @@ const PropertyCardGroup = ({ selectedTypeId }: { selectedTypeId: number }) => {
 // pagination buttons (not working)
 const Pagination = () => {
   return (
-    <div className="flex items-center justify-end gap-2 my-5">
+    <div className="flex items-center justify-end gap-2 mt-3">
       <Button
         variant="info_outline"
         className="w-10 h-10 rounded-full "
@@ -89,11 +87,11 @@ const Pagination = () => {
   );
 };
 
-const FeaturedProperties = () => {
+export const FeaturedProperties = () => {
   const [selectedType, setSelectedType] = useState<number>(0);
 
   return (
-    <section className="w-full px-4 py-6 mx-auto sm:max-w-3xl md:max-4xl lg:max-w-7xl lg:px-0">
+    <section className="w-full px-4 mx-auto sm:max-w-3xl md:max-4xl lg:max-w-7xl lg:px-0">
       <FeatureHeader
         selectedType={selectedType}
         setSelectedType={setSelectedType}
@@ -103,5 +101,3 @@ const FeaturedProperties = () => {
     </section>
   );
 };
-
-export default FeaturedProperties;
