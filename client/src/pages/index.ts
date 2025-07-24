@@ -4,3 +4,4 @@ export * from './Properties';
 export * from './PropertyDetails';
 export * from './NotFound';
 export * from './AgentsPage';
+export * from './AgentDetails';

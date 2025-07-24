@@ -1,4 +1,8 @@
-import React, { useState, InputHTMLAttributes } from 'react';
+import React, {
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+  useState,
+} from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -51,3 +55,25 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 PasswordInput.displayName = 'PasswordInput';
+
+interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label?: string;
+}
+
+export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  ({ label, className = '', ...props }, ref) => {
+    return (
+      <div className="flex flex-col w-full gap-1">
+        {label && <label className="text-sm">{label}</label>}
+        <textarea
+          ref={ref}
+          {...props}
+          rows={props.rows || 4}
+          className={`text-sm px-3 py-2 border rounded-md outline-none focus:ring-1 focus:ring-primary border-border bg-gray-200 resize-none ${className}`}
+        />
+      </div>
+    );
+  }
+);
+
+TextArea.displayName = 'TextArea';

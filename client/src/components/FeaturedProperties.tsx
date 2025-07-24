@@ -59,7 +59,7 @@ const PropertyCardGroup = ({ selectedTypeId }: { selectedTypeId: number }) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3">
       {filteredList.slice(0, 3).map((prop) => (
-        <PropertyCard key={prop.id} property={prop} />
+        <PropertyCard key={prop.id} property={prop} variant="square" />
       ))}
     </div>
   );
