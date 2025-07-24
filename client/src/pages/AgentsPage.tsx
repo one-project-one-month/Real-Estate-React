@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, MapPin, Phone, MessageCircle, Search } from 'lucide-react';
 import { Button } from '@ui';
+import { useNavigate } from 'react-router-dom';
 
 interface Agent {
   refId: string;
@@ -13,6 +14,7 @@ interface Agent {
 
 // Agent Card
 const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
+  const nav = useNavigate();
   return (
     <div className="relative flex flex-col gap-5 p-4 transition-shadow duration-300 bg-white border border-gray-200 shadow-md rounded-xl sm:flex-row sm:items-center hover:shadow-lg">
       <p className="absolute text-sm font-bold text-red-500 top-4 right-4">
@@ -50,7 +52,7 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
           {agent.bio}
         </p>
         <div className="mt-4 text-center sm:text-right">
-          <button className="px-4 py-1.5 text-xs font-semibold border border-gray-300 text-gray-600 rounded-md hover:bg-gray-100">
+          <button onClick={() => nav(`/agent/${agent.refId}`)} className="px-4 py-1.5 text-xs font-semibold border border-gray-300 text-gray-600 rounded-md hover:bg-gray-100">
             Details
           </button>
         </div>
