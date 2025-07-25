@@ -1,5 +1,6 @@
 import mockData from '@mocks';
 import { useNavigate } from 'react-router-dom';
+import { PostType } from '@types';
 
 const CityCard = ({ name, count }: { name: string; count: number }) => {
   const navigate = useNavigate();
@@ -7,7 +8,11 @@ const CityCard = ({ name, count }: { name: string; count: number }) => {
   return (
     <div
       className="flex flex-col items-center w-full max-w-[160px] sm:max-w-[180px] md:max-w-[200px] cursor-pointer"
-      onClick={() => navigate(`/properties?postType=Sale&township=${name}`)}
+      onClick={() =>
+        navigate(
+          `/properties?postType=${PostType.Sale}&township=${name.toLowerCase()}`
+        )
+      }
     >
       <div className="w-full mb-3 overflow-hidden bg-gray-200 rounded-full aspect-square">
         <img

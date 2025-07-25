@@ -8,15 +8,11 @@ import {
   DropdownMenuTrigger,
 } from '@ui';
 import { ChevronDown } from 'lucide-react';
-import { PostType, PropertyType } from '../types/model.type';
+import { PostType } from '@types';
 import { PostQueryParams } from '../types/post.type';
 import { initialize, getStates } from '@tm11/mmgeo';
 import { propertyTypes } from '../../../mocks/propertyTypes';
 import { parsePriceRange } from '@utils';
-import { useMutation } from '@tanstack/react-query';
-import { searchPostsAsync } from '../services/post.service';
-import { toast } from 'sonner';
-import { useNavigate } from 'react-router-dom';
 
 initialize({ language: 'eng' });
 
@@ -39,17 +35,19 @@ interface FilterDropdownProps {
   options: string[];
   value: string;
   onChange: (value: string) => void;
+  className?: string;
 }
 
-const FilterDropdown = ({
+export const FilterDropdown = ({
   label,
   options,
   value,
   onChange,
+  className,
 }: FilterDropdownProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className={className}>
         <Button
           variant="secondary"
           className="flex items-center w-full h-10 gap-2 px-4 border rounded-md border-border"
@@ -95,35 +93,36 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
 
   return (
     <div className="w-full max-w-5xl p-4 bg-white border-t-4 shadow-md border-primary md:p-6 rounded-xl">
-      {/* Top row: PostType, Input, Search Button */}
       <div className="flex flex-col gap-3 md:flex-row md:gap-3">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button
-              variant="secondary"
-              className="flex items-center w-full h-10 gap-2 px-4 border rounded-md border-border md:w-auto"
-            >
-              {searchQueryParams.postType.toUpperCase()}
-              <ChevronDown size={16} />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
-            {[PostType.Sale, PostType.Rent, PostType.Lease].map((option) => (
-              <DropdownMenuItem
-                key={option}
-                onClick={() =>
-                  setSearchQueryParams({
-                    ...searchQueryParams,
-                    postType: option,
-                  })
-                }
-                className="cursor-pointer hover:bg-primary/50"
+        {filterIncluded && (
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Button
+                variant="secondary"
+                className="flex items-center w-full h-10 gap-2 px-4 border rounded-md border-border md:w-auto"
               >
-                {option.toUpperCase()}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+                {searchQueryParams.postType.toUpperCase()}
+                <ChevronDown size={16} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              {[PostType.Sale, PostType.Rent, PostType.Lease].map((option) => (
+                <DropdownMenuItem
+                  key={option}
+                  onClick={() =>
+                    setSearchQueryParams({
+                      ...searchQueryParams,
+                      postType: option,
+                    })
+                  }
+                  className="cursor-pointer hover:bg-primary/50"
+                >
+                  {option.toUpperCase()}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
 
         <Input
           placeholder="Search by keywords"
@@ -154,7 +153,7 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
             onChange={(value) =>
               setSearchQueryParams((prev) => ({
                 ...prev,
-                region: value.toLowerCase(),
+                region: value,
               }))
             }
           />
@@ -165,7 +164,7 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
             onChange={(value) =>
               setSearchQueryParams((prev) => ({
                 ...prev,
-                propertyType: value.toLowerCase(),
+                propertyType: value,
               }))
             }
           />

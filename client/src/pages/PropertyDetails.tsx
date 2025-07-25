@@ -13,6 +13,7 @@ import {
 import { Button } from '@ui';
 import { BreadcrumbNavigator } from '../components';
 import { useNavigate } from 'react-router-dom';
+import { PostType } from '@types';
 
 interface ImageData {
   src: string;
@@ -95,7 +96,9 @@ export const PropertyDetails: React.FC = () => {
       <BreadcrumbNavigator
         paths={[
           { label: 'Home', href: '/' },
-          { label: 'Properties', href: '/properties?postType=sale' },
+          {
+            label: `Properties', href: '/properties?postType=${PostType.Sale}`,
+          },
           { label: '1', isCurrent: true },
         ]}
       />{' '}

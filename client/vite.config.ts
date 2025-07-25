@@ -11,6 +11,7 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, '../shared/utils/src'),
       '@api': path.resolve(__dirname, '../shared/api/src'),
       '@mocks': path.resolve(__dirname, '../mocks'),
+      '@types': path.resolve(__dirname, '../types'),
     },
   },
 });

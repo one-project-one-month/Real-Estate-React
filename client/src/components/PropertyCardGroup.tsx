@@ -1,4 +1,4 @@
-import { Property } from 'src/types/model.type';
+import { Property } from '@types';
 import { PropertyCard } from './PropertyCard';
 import { useState } from 'react';
 

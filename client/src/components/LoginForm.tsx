@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { PasswordInput, Input } from './Input';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { LoginRequest } from '../types/auth.type';
+import { LoginRequest, LoginResponse } from '../types/auth.type';
 import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
 import { loginAsync } from '../services/auth.service';
@@ -19,7 +19,9 @@ export const LoginForm = () => {
 
   const handleLogin = async (data: LoginRequest) => {
     try {
-      const response = await mutation.mutateAsync(data);
+      const response: LoginResponse = await mutation.mutateAsync(data);
+      localStorage.setItem('access_token', response.accessToken);
+      localStorage.setItem('refresh_token', response.refreshToken);
       toast.success('Login successful!');
       navigate('/');
     } catch (error: any) {

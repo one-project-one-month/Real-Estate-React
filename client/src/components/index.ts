@@ -18,6 +18,7 @@ export * from './AgentProfile';
 export * from './AgentContactForm';
 export * from './PropertyCardGroup';
 export * from './AgentCard';
+export * from './AuthLoader';
 
 export * from './layout/Footer';
 export * from './layout/Header';
