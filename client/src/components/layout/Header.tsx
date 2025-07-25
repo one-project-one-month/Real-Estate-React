@@ -3,6 +3,7 @@ import logoSVG from '../../../assets/logo/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@ui';
 import { FolderUp, Menu, X } from 'lucide-react';
+import { PostType } from '@types';
 
 interface HeaderTabProps {
   children: React.ReactNode;
@@ -36,7 +37,7 @@ export const Header = () => {
     <>
       <HeaderTab
         onClick={() => {
-          navigate('/properties?postType=sale');
+          navigate(`/properties?postType=${PostType.Sale}`);
           closeMenu();
         }}
       >

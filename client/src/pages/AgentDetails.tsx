@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import mockData from '@mocks';
-import { PostStatus, PostType } from '../../../types/model.type';
+import { PostStatus, PostType } from '@types';
 import { BreadcrumbNavigator } from '../components';
 import {
   AgentProfile,

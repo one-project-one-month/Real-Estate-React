@@ -7,6 +7,8 @@ import {
   AuthPage,
   AgentsPage,
   AgentDetails,
+  UploadPost,
+  Wishlist,
 } from './pages';
 import { Layout, RegisterForm, LoginForm } from './components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -71,6 +73,22 @@ const App = () => {
             element={
               <Layout>
                 <AgentDetails />
+              </Layout>
+            }
+          />
+          <Route
+            path="/upload"
+            element={
+              <Layout>
+                <UploadPost />
+              </Layout>
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <Layout>
+                <Wishlist />
               </Layout>
             }
           />

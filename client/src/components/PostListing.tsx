@@ -1,9 +1,9 @@
 import React from 'react';
 import { PropertyCard } from './PropertyCard';
 import mockData from '@mocks';
-import { Post } from 'src/types/model.type';
+import { Post, PostType } from '@types';
 import { ArrowRight } from 'lucide-react';
-import { PostQueryParams } from 'src/types/post.type';
+import { PostQueryParams } from '../types/post.type';
 import { useNavigate } from 'react-router-dom';
 
 interface PostListingProps {
@@ -20,7 +20,7 @@ export const PostListing: React.FC<PostListingProps> = ({ posts }) => {
           No Matching Posts
         </span>
         <span
-          onClick={() => navigate('/properties?postType=sale')}
+          onClick={() => navigate(`/properties?postType=${PostType.Sale}`)}
           className="flex items-center justify-center gap-3 text-sm font-medium cursor-pointer text-secondary-foreground/30 hover:underline"
         >
           See All

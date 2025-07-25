@@ -180,14 +180,14 @@ export enum RoleName {
 }
 
 export enum PostStatus {
-  Active = 'active',
-  Pending = 'pending',
-  Sold = 'sold',
-  Rented = 'rented',
+  Active = 'Active',
+  Pending = 'Pending',
+  Sold = 'Sold',
+  Rented = 'Rented',
 }
 
 export enum PostType {
-  Sale = 'sale',
-  Rent = 'rent',
-  Lease = 'lease',
+  Sale = 'Sale',
+  Rent = 'Rent',
+  Lease = 'Lease',
 }

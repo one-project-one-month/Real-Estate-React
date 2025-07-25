@@ -1,7 +1,7 @@
 import { Button } from '@ui';
 import mockData from '@mocks';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { Property } from '../../../types/model.type';
+import { Property } from '@types';
 
 import { useEffect, useState } from 'react';
 import { PropertyCard } from './PropertyCard';

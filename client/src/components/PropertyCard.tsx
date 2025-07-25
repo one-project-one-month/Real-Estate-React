@@ -1,6 +1,6 @@
 import { Button, Card, CardImage, CardFooter, CardContent } from '@ui';
 import { Bath, Home, Bed } from 'lucide-react';
-import { Property } from '../../../types/model.type';
+import { Property } from '@types';
 import { useNavigate } from 'react-router-dom';
 import { formatCurrency } from '@utils';
 import mockData from '@mocks';
