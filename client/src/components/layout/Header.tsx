@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@ui';
 import { FolderUp, Menu, X } from 'lucide-react';
 import { PostType } from '@types';
+import { useUserStore } from '../../stores/userStore';
+import { logOutAsync } from '../../services/auth.service';
 
 interface HeaderTabProps {
   children: React.ReactNode;
@@ -29,6 +31,8 @@ const HeaderTab: React.FC<HeaderTabProps> = ({
 export const Header = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const currentUser = useUserStore((state) => state.user);
+  const clearUser = useUserStore((state) => state.clearUser);
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -62,7 +66,41 @@ export const Header = () => {
     </>
   );
 
-  const authNav = (
+  const withAccAuthNav = currentUser ? (
+    <>
+      {/* <HeaderTab
+        onClick={async () => {
+          clearUser();
+          await logOutAsync(
+            currentUser.id,
+            localStorage.getItem('access_token')
+          );
+          console.log(currentUser.username);
+          closeMenu();
+        }}
+      >
+        Log Out
+      </HeaderTab> */}
+      <HeaderTab onClick={() => navigate('/me')}>
+        {!isMobileMenuOpen ? (
+          <div className="flex items-center justify-center gap-3">
+            <span>{currentUser.username}</span>
+            <div className="w-8 h-8 overflow-hidden bg-gray-200 border border-gray-300 rounded-full shadow-sm cursor-pointer">
+              <img
+                src="/no-pf.webp"
+                alt="Profile"
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+        ) : (
+          'My Account'
+        )}
+      </HeaderTab>
+    </>
+  ) : null;
+
+  const noAccAuthNav = (
     <>
       <HeaderTab
         onClick={() => {
@@ -98,7 +136,9 @@ export const Header = () => {
       <div className="items-center justify-end flex-1 hidden gap-5 md:flex">
         <ul className="flex items-center gap-2 px-5">{mainNav}</ul>
         <span className="text-2xl font-thin pointer-events-none">|</span>
-        <ul className="flex items-center gap-2">{authNav}</ul>
+        <ul className="flex items-center gap-2">
+          {currentUser === null ? noAccAuthNav : withAccAuthNav}
+        </ul>
         <Button
           size="lg"
           variant="secondary"
@@ -120,7 +160,7 @@ export const Header = () => {
         <div className="absolute left-0 z-50 w-full px-5 py-4 border-t top-full bg-background border-border md:hidden">
           <ul className="flex flex-col items-center gap-3 mb-4">{mainNav}</ul>
           <ul className="flex flex-col items-center gap-3 pt-3 mb-4 border-t border-border">
-            {authNav}
+            {currentUser === null ? noAccAuthNav : withAccAuthNav}
           </ul>
           <Button
             size="lg"

@@ -7,3 +7,4 @@ export * from './AgentsPage';
 export * from './AgentDetails';
 export * from './UploadPost';
 export * from './Wishlist';
+export * from './MyProfile';

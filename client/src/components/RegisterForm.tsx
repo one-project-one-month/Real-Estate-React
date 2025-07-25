@@ -61,7 +61,7 @@ export const RegisterForm = () => {
         />
         <PasswordInput
           label="Password:"
-          placeholder="Create a password"
+          placeholder="Enter a password"
           {...register('password', { required: true })}
         />
       </div>

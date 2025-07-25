@@ -9,6 +9,7 @@ import {
   AgentDetails,
   UploadPost,
   Wishlist,
+  MyProfile,
 } from './pages';
 import { Layout, RegisterForm, LoginForm } from './components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -20,6 +21,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
+          {/* Non-auth pages wrapped in AuthLoader */}
           <Route
             path="/"
             element={
@@ -34,22 +36,6 @@ const App = () => {
               <Layout>
                 <Properties />
               </Layout>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <AuthPage>
-                <LoginForm />
-              </AuthPage>
-            }
-          />
-          <Route
-            path="/registration"
-            element={
-              <AuthPage>
-                <RegisterForm />
-              </AuthPage>
             }
           />
           <Route
@@ -92,6 +78,33 @@ const App = () => {
               </Layout>
             }
           />
+          <Route
+            path="/me"
+            element={
+              <Layout>
+                <MyProfile />
+              </Layout>
+            }
+          />
+
+          {/* Auth pages NOT wrapped in AuthLoader */}
+          <Route
+            path="/login"
+            element={
+              <AuthPage>
+                <LoginForm />
+              </AuthPage>
+            }
+          />
+          <Route
+            path="/registration"
+            element={
+              <AuthPage>
+                <RegisterForm />
+              </AuthPage>
+            }
+          />
+
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
