@@ -20,8 +20,8 @@ export const RegisterForm = () => {
   const handleRegister = async (data: RegisterRequest) => {
     try {
       const response = await mutation.mutateAsync(data);
-      toast.success('Registration successful!');
-      navigate('/');
+      toast.success('Registration successful! Please Login to Your Account.');
+      navigate('/login');
     } catch (error: any) {
       toast.error(error.message ?? 'Registration failed');
     }

@@ -32,7 +32,6 @@ export const Header = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const currentUser = useUserStore((state) => state.user);
-  const clearUser = useUserStore((state) => state.clearUser);
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -68,19 +67,6 @@ export const Header = () => {
 
   const withAccAuthNav = currentUser ? (
     <>
-      {/* <HeaderTab
-        onClick={async () => {
-          clearUser();
-          await logOutAsync(
-            currentUser.id,
-            localStorage.getItem('access_token')
-          );
-          console.log(currentUser.username);
-          closeMenu();
-        }}
-      >
-        Log Out
-      </HeaderTab> */}
       <HeaderTab onClick={() => navigate('/me')}>
         {!isMobileMenuOpen ? (
           <div className="flex items-center justify-center gap-3">
