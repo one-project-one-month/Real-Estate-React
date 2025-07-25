@@ -8,6 +8,7 @@ import {
   PropertyCardGroup,
 } from '../components';
 import { MapPin } from 'lucide-react';
+import { useState } from 'react';
 
 interface PropertyTypeStatsProps {
   stats: string[];
@@ -52,15 +53,32 @@ export const AgentAbout = ({ id, bio, area }: AgentAboutProps) => (
 
 export const AgentDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const [selectedPostType, setSelectedPostType] = useState<
+    'Sale' | 'Rent' | null
+  >('Sale');
+  const [selectedPostStatus, setSelectedPostStatus] = useState<
+    'Sold' | 'Rented' | null
+  >('Sold');
 
   const saleProperties = mockData.properties.slice(0, 6).filter((property) => {
     const post = mockData.posts.find((post) => post.propertyId === property.id);
-    return post?.type === PostType.Sale;
+    if (!post) return false;
+    if (selectedPostType === 'Sale') {
+      return post.type === PostType.Sale;
+    } else {
+      return post.type === PostType.Rent;
+    }
   });
 
   const soldProperties = mockData.properties.filter((property) => {
     const post = mockData.posts.find((post) => post.propertyId === property.id);
-    return post && [PostStatus.Sold, PostStatus.Rented].includes(post.status);
+    if (!post) return false;
+    if (selectedPostStatus === 'Sold') {
+      return post.status === PostStatus.Sold;
+    } else if (selectedPostStatus === 'Rented') {
+      return post.status === PostStatus.Rented;
+    }
+    // return (post.status === PostStatus.Sold || post.status === PostStatus.Rented)
   });
 
   return (
@@ -107,13 +125,17 @@ export const AgentDetails = () => {
       </div>
 
       <PropertyCardGroup
+        onChange={setSelectedPostType}
         properties={saleProperties}
         title="Properties Available"
+        filterType={'postType'}
       />
 
       <PropertyCardGroup
+        onChange={setSelectedPostStatus}
         properties={soldProperties}
         title="Properties Sold / Rented"
+        filterType={'postStatus'}
       />
     </section>
   );
