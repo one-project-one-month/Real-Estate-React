@@ -14,6 +14,7 @@ import { Button } from '@ui';
 import { BreadcrumbNavigator } from '../components';
 import { useNavigate } from 'react-router-dom';
 import { PostType } from '@types';
+import { useTranslation } from 'react-i18next';
 
 interface ImageData {
   src: string;
@@ -33,6 +34,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({ children }) => (
 
 export const PropertyDetails: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const galleryImages: ImageData[] = [
     {
       src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2940&auto=format&fit=crop',
@@ -95,9 +97,10 @@ export const PropertyDetails: React.FC = () => {
     <section className="flex flex-col w-full gap-10 px-4 py-6 mx-auto sm:max-w-3xl md:max-w-4xl lg:max-w-7xl lg:px-0">
       <BreadcrumbNavigator
         paths={[
-          { label: 'Home', href: '/' },
+          { label: t('home'), href: '/' },
           {
-            label: `Properties', href: '/properties?postType=${PostType.Sale}`,
+            label: t('properties'),
+            href: `/properties?postType=${PostType.Sale}`,
           },
           { label: '1', isCurrent: true },
         ]}
@@ -113,7 +116,7 @@ export const PropertyDetails: React.FC = () => {
           </div>
         </div>
         <div className="mt-4 text-right md:mt-0">
-          <p className="text-gray-500">Price</p>
+          <p className="text-gray-500">{t('price')}</p>
           <p className="text-3xl font-semibold text-secondary-foreground">
             $1,250,000
           </p>
@@ -186,7 +189,7 @@ export const PropertyDetails: React.FC = () => {
                   size={35}
                 />
                 <p className="text-2xl font-semibold text-gray-800">04</p>
-                <p className="text-sm text-gray-500">Bedrooms</p>
+                <p className="text-sm text-gray-500">{t('bedroom')}</p>
               </div>
               <div className="p-2">
                 <Bath
@@ -194,12 +197,12 @@ export const PropertyDetails: React.FC = () => {
                   size={35}
                 />
                 <p className="text-xl font-bold text-gray-800">03</p>
-                <p className="text-sm text-gray-500">Bathrooms</p>
+                <p className="text-sm text-gray-500">{t('bathroom')}</p>
               </div>
               <div className="p-2">
                 <Square className="mx-auto mb-2 text-primary" size={35} />
                 <p className="text-xl font-bold text-gray-800">2,500</p>
-                <p className="text-sm text-gray-500">Square Feet</p>
+                <p className="text-sm text-gray-500">{t('square_feet')}</p>
               </div>
             </div>
           </div>
@@ -231,16 +234,16 @@ export const PropertyDetails: React.FC = () => {
                   className="border border-secondary-foreground"
                   onClick={() => navigate(`/agents/${1}`)}
                 >
-                  Details
+                  {t('detail')}
                 </Button>
               </div>
 
               <div className="grid grid-cols-1 gap-3 pt-2 sm:grid-cols-2">
                 <Button size="lg">
-                  <Phone size={16} /> Call
+                  <Phone size={16} /> {t('call')}
                 </Button>
                 <Button size="lg">
-                  <MessageCircle size={16} /> Message
+                  <MessageCircle size={16} /> {t('message')}
                 </Button>
               </div>
             </div>
@@ -251,7 +254,7 @@ export const PropertyDetails: React.FC = () => {
         {/* Right Column */}
         <div className="p-6 bg-white border border-gray-200 md:p-8 rounded-2xl">
           <h2 className="mb-4 text-2xl font-bold text-gray-800">
-            Key Features and Amenities
+            {t('key_features.heading')}{' '}
           </h2>
           <ul className="space-y-3">
             <FeatureItem>
