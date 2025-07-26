@@ -3,13 +3,15 @@ import { useForm } from 'react-hook-form';
 import { PasswordInput, Input } from './Input';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { LoginRequest } from '../types/auth.type';
+import { LoginRequest, LoginResponse } from '../types/auth.type';
 import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
 import { loginAsync } from '../services/auth.service';
+import { useTranslation } from 'react-i18next';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -19,7 +21,9 @@ export const LoginForm = () => {
 
   const handleLogin = async (data: LoginRequest) => {
     try {
-      const response = await mutation.mutateAsync(data);
+      const response: LoginResponse = await mutation.mutateAsync(data);
+      localStorage.setItem('access_token', response.accessToken);
+      localStorage.setItem('refresh_token', response.refreshToken);
       toast.success('Login successful!');
       navigate('/');
     } catch (error: any) {
@@ -38,42 +42,43 @@ export const LoginForm = () => {
           className="flex items-center gap-2 text-sm cursor-pointer text-secondary-foreground hover:brightness-50"
         >
           <ArrowLeft size={16} className="inline" />
-          Back to Home
+          {t('auth.back_to_home')}
         </span>
       </div>
       <div className="flex flex-col items-center justify-center">
         <img src="../../assets/logo.svg" alt="logo" className="h-[3rem]" />
-        <p className="text-sm">Welcome Back to Pwel-Sar</p>
+        <p className="text-sm"> {t('auth.welcome_back')}</p>
       </div>
 
       <div className="flex flex-col gap-3">
         <Input
-          label="Email:"
+          label={t('footer.email')}
           type="email"
-          placeholder="Your email address"
+          placeholder={t('footer.email')}
           {...register('email', { required: true })}
         />
         <PasswordInput
-          label="Password:"
-          placeholder="Your password"
+          label={t('auth.password')}
+          placeholder={t('auth.password_placeholder')}
           {...register('password', { required: true })}
         />
       </div>
 
-      <Button size="lg">Login</Button>
+      <Button size="lg">    {t('login')}</Button>
 
       <div className="flex flex-col items-center justify-center gap-2 text-sm text-secondary-foreground">
         <p>
-          Don't have an account?{' '}
+         {t('auth.dont_have_account')}
           <span
             className="underline cursor-pointer hover:brightness-50"
             onClick={() => navigate('/registration')}
           >
-            Sign up
+                 {t('login')}
+
           </span>
         </p>
         <p className="underline cursor-pointer hover:brightness-50">
-          Forgot Password
+       {t('auth.forgot_password')}
         </p>
       </div>
     </form>

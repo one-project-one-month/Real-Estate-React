@@ -24,3 +24,13 @@ export type RegisterResponse = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type UserResponse = {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  roleId: number;
+  createdAt: string;
+  updatedAt: string;
+};

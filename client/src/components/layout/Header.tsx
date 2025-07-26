@@ -3,6 +3,10 @@ import logoSVG from '../../../assets/logo/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@ui';
 import { FolderUp, Menu, X } from 'lucide-react';
+import { PostType } from '@types';
+import { useUserStore } from '../../stores/userStore';
+import { logOutAsync } from '../../services/auth.service';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderTabProps {
   children: React.ReactNode;
@@ -28,6 +32,13 @@ const HeaderTab: React.FC<HeaderTabProps> = ({
 export const Header = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const currentUser = useUserStore((state) => state.user);
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const nextLang = i18n.language === 'en' ? 'my' : 'en';
+    i18n.changeLanguage(nextLang);
+  };
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -36,11 +47,11 @@ export const Header = () => {
     <>
       <HeaderTab
         onClick={() => {
-          navigate('/properties?postType=sale');
+          navigate(`/properties?postType=${PostType.Sale}`);
           closeMenu();
         }}
       >
-        Properties
+        {t('properties')}
       </HeaderTab>
       <HeaderTab
         onClick={() => {
@@ -48,7 +59,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Agents
+        {t('agents')}
       </HeaderTab>
       <HeaderTab
         onClick={() => {
@@ -56,12 +67,33 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Your Wishlist
+        {t('wishlist')}
       </HeaderTab>
     </>
   );
 
-  const authNav = (
+  const withAccAuthNav = currentUser ? (
+    <>
+      <HeaderTab onClick={() => navigate('/me')}>
+        {!isMobileMenuOpen ? (
+          <div className="flex items-center justify-center gap-3">
+            <span>{currentUser.username}</span>
+            <div className="w-8 h-8 overflow-hidden bg-gray-200 border border-gray-300 rounded-full shadow-sm cursor-pointer">
+              <img
+                src="/no-pf.webp"
+                alt="Profile"
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+        ) : (
+          t('account')
+        )}
+      </HeaderTab>
+    </>
+  ) : null;
+
+  const noAccAuthNav = (
     <>
       <HeaderTab
         onClick={() => {
@@ -69,7 +101,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Register
+        {t('register')}
       </HeaderTab>
       <HeaderTab
         onClick={() => {
@@ -77,7 +109,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Log in
+        {t('login')}
       </HeaderTab>
     </>
   );
@@ -97,14 +129,19 @@ export const Header = () => {
       <div className="items-center justify-end flex-1 hidden gap-5 md:flex">
         <ul className="flex items-center gap-2 px-5">{mainNav}</ul>
         <span className="text-2xl font-thin pointer-events-none">|</span>
-        <ul className="flex items-center gap-2">{authNav}</ul>
+        <ul className="flex items-center gap-2">
+          {currentUser === null ? noAccAuthNav : withAccAuthNav}
+        </ul>
+        <Button onClick={toggleLanguage} size="md" variant="secondary">
+          {i18n.language === 'en' ? 'မြန်မာ' : 'English'}
+        </Button>
         <Button
           size="lg"
           variant="secondary"
           onClick={() => navigate('/upload')}
         >
           <FolderUp size={20} />
-          Upload
+          {t('upload')}
         </Button>
       </div>
 
@@ -119,8 +156,16 @@ export const Header = () => {
         <div className="absolute left-0 z-50 w-full px-5 py-4 border-t top-full bg-background border-border md:hidden">
           <ul className="flex flex-col items-center gap-3 mb-4">{mainNav}</ul>
           <ul className="flex flex-col items-center gap-3 pt-3 mb-4 border-t border-border">
-            {authNav}
+            {currentUser === null ? noAccAuthNav : withAccAuthNav}
           </ul>
+          <Button
+            className="w-full mb-4 text-black"
+            onClick={toggleLanguage}
+            size="md"
+            variant="secondary"
+          >
+            {i18n.language === 'en' ? 'မြန်မာ' : 'English'}
+          </Button>
           <Button
             size="lg"
             className="w-full"
@@ -130,7 +175,7 @@ export const Header = () => {
             }}
           >
             <FolderUp size={20} />
-            Upload
+            {t('upload')}
           </Button>
         </div>
       )}

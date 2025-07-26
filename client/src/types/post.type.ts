@@ -1,4 +1,4 @@
-import { PostType, PropertyType } from './model.type';
+import { PostType, PropertyType } from '@types';
 
 export interface PostQueryParams {
   cursor?: string;

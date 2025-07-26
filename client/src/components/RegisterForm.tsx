@@ -7,8 +7,10 @@ import { RegisterRequest } from '../types/auth.type';
 import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
 import { registerAsync } from '../services/auth.service';
+import { useTranslation } from 'react-i18next';
 
 export const RegisterForm = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const {
     register,
@@ -20,8 +22,8 @@ export const RegisterForm = () => {
   const handleRegister = async (data: RegisterRequest) => {
     try {
       const response = await mutation.mutateAsync(data);
-      toast.success('Registration successful!');
-      navigate('/');
+      toast.success('Registration successful! Please Login to Your Account.');
+      navigate('/login');
     } catch (error: any) {
       toast.error(error.message ?? 'Registration failed');
     }
@@ -38,44 +40,45 @@ export const RegisterForm = () => {
           className="flex items-center gap-2 text-sm cursor-pointer text-secondary-foreground hover:brightness-50"
         >
           <ArrowLeft size={16} className="inline" />
-          Back to Home
+          {t('auth.back_to_home')}
         </span>
       </div>
       <div className="flex flex-col items-center justify-center">
         <img src="../../assets/logo.svg" alt="logo" className="h-[3rem]" />
-        <p className="text-sm">Create Your Account</p>
+        <p className="text-sm">{t('auth.create_account')}</p>
       </div>
 
       <div className="flex flex-col gap-3">
         <Input
-          label="Username:"
+          label={t('auth.username')}
           type="text"
-          placeholder="Your full name"
+          placeholder={t('auth.username_placeholder')}
           {...register('username', { required: true })}
         />
         <Input
-          label="Email:"
+          label={t('footer.email')}
           type="email"
-          placeholder="Your email address"
+          placeholder={t('footer.email')}
           {...register('email', { required: true })}
         />
         <PasswordInput
-          label="Password:"
-          placeholder="Create a password"
+          label={t('auth.password')}
+          placeholder={t('auth.password_placeholder')}
           {...register('password', { required: true })}
         />
       </div>
 
-      <Button size="lg">Sign Up</Button>
+      <Button size="lg">{t('auth.create_account')}</Button>
 
       <div className="flex flex-col items-center justify-center gap-2 text-sm text-secondary-foreground">
         <p>
-          Already have an account?{' '}
+          {t('auth.already_have_account')}
+
           <span
             className="underline cursor-pointer hover:brightness-50"
             onClick={() => navigate('/login')}
           >
-            Login
+            {t('login')}
           </span>
         </p>
       </div>

@@ -28,6 +28,7 @@ export interface User {
   id: number;
   username: string;
   email: string;
+  title: string;
   photo?: string;
   password?: string;
   roleId: number;
@@ -131,6 +132,7 @@ export interface OwnerProfile {
   userId: number;
   nrcNo: string;
   address: string;
+  phone: string,
   user?: User;
 }
 
@@ -180,14 +182,14 @@ export enum RoleName {
 }
 
 export enum PostStatus {
-  Active = 'active',
-  Pending = 'pending',
-  Sold = 'sold',
-  Rented = 'rented',
+  Active = 'Active',
+  Pending = 'Pending',
+  Sold = 'Sold',
+  Rented = 'Rented',
 }
 
 export enum PostType {
-  Sale = 'sale',
-  Rent = 'rent',
-  Lease = 'lease',
+  Sale = 'Sale',
+  Rent = 'Rent',
+  Lease = 'Lease',
 }

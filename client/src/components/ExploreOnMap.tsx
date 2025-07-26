@@ -1,14 +1,23 @@
+import { Button, Card, CardContent, CardImage } from '@ui';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const ExploreOnMap = () => {
+  const {t} = useTranslation();
   return (
-    <div
-      className="text-white bg-black h-[300px] relative bg-cover cursor-pointer"
-      style={{
-        backgroundImage: "url('/map.png')",
-      }}
-    >
-      <div className="absolute top-0 bottom-0 left-0 right-0 bg-black opacity-10"></div>
-    </div>
+    <Card className="w-full max-w-md p-6 space-y-5 transition-none border shadow-sm hover:translate-y-0 rounded-2xl border-border bg-background">
+      <h1 className="text-gray-500 text-md">Explore On Map</h1>
+
+      <CardContent>
+        <CardImage
+          src="/map.png"
+          alt="Explore on map"
+          className="cursor-pointer"
+        />
+      </CardContent>
+      <Button size="lg" className="w-full">
+        {t('search')}
+      </Button>
+    </Card>
   );
 };

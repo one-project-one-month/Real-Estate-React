@@ -1,4 +1,4 @@
-import { Post } from '../../../types/model.type';
+import { Post } from '../../../types';
 import { PostQueryParams } from '../../../client/src/types/post.type';
 import mockData from '@mocks';
 
@@ -30,10 +30,18 @@ export const filterPostsByQuery = (query: PostQueryParams): Post[] => {
     if (query.region && property.region !== query.region) return false;
 
     // Township match
-    if (query.township && property.township !== query.township) return false;
+    if (
+      query.township &&
+      property.township.toLowerCase() !== query.township.toLowerCase()
+    )
+      return false;
 
     // Street match
-    if (query.street && property.street !== query.street) return false;
+    if (
+      query.street &&
+      property.street.toLowerCase() !== query.street.toLowerCase()
+    )
+      return false;
 
     // Property type match
     if (

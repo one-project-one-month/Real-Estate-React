@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import mockData from '@mocks';
-import { PostStatus, PostType } from '../../../types/model.type';
+import { PostStatus, PostType } from '@types';
 import { BreadcrumbNavigator } from '../components';
 import {
   AgentProfile,
@@ -8,24 +8,39 @@ import {
   PropertyCardGroup,
 } from '../components';
 import { MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface PropertyTypeStatsProps {
   stats: string[];
 }
 
-const PropertyTypeStats = ({ stats }: PropertyTypeStatsProps) => (
-  <div className="flex flex-wrap items-center gap-2 lg:gap-1 md:flex-nowrap">
-    {stats.map((item, idx) => (
-      <div key={idx} className="flex px-2">
-        <MapPin
-          size={16}
-          className="mt-0.5 mx-2 flex-shrink-0 text-secondary-foreground"
-        />
-        <span>{item}</span>
-      </div>
-    ))}
-  </div>
-);
+const PropertyTypeStats = ({ stats }: PropertyTypeStatsProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="flex flex-wrap items-center gap-2 lg:gap-1 md:flex-nowrap">
+      {stats.map((item, idx) => {
+        const [no, ...rest] = item.split(' ');
+        const property = rest.join(' ');
+        return (
+          <div key={idx} className="flex px-2">
+            <MapPin
+              size={16}
+              className="mt-0.5 mx-2 flex-shrink-0 text-secondary-foreground"
+            />
+            <span>
+              {no}{' '}
+              {t(
+                `property_types.${property.toLowerCase().replace(/\s+/g, '_')}`
+              )}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 interface AgentAboutProps {
   id: string;
@@ -33,42 +48,68 @@ interface AgentAboutProps {
   area: string;
 }
 
-export const AgentAbout = ({ id, bio, area }: AgentAboutProps) => (
-  <div className="flex flex-col gap-4 p-4 bg-white">
-    <h4 className="text-2xl font-semibold text-gray-800">About</h4>
-    <p className="text-sm leading-relaxed text-gray-500 sm:max-w-lg md:max-w-3xl">
-      {bio}
-    </p>
-    <h4 className="font-bold text-gray-800">
-      Agent Licence{' '}
-      <span className="text-sm font-normal text-gray-500">{id}</span>
-    </h4>
-    <h4 className="font-bold text-gray-800">
-      Service Area:{' '}
-      <span className="text-sm font-normal text-gray-500">{area}</span>
-    </h4>
-  </div>
-);
+export const AgentAbout = ({ id, bio, area }: AgentAboutProps) => {
+  const {t} = useTranslation();
+  return (
+    <div className="flex flex-col gap-4 p-4 bg-white">
+      <h4 className="text-2xl font-semibold text-gray-800">{t('about')}</h4>
+      <p className="text-sm leading-relaxed text-gray-500 sm:max-w-lg md:max-w-3xl">
+        {bio}
+      </p>
+      <h4 className="font-bold text-gray-800">
+       {t('license')}
+        <span className="text-sm font-normal text-gray-500">{id}</span>
+      </h4>
+      <h4 className="font-bold text-gray-800">
+         {t('service_area')}
+        <span className="text-sm font-normal text-gray-500">{area}</span>
+      </h4>
+    </div>
+  );
+};
 
 export const AgentDetails = () => {
+  const { t } = useTranslation();
+
   const { id } = useParams<{ id: string }>();
+  const agent = mockData.agentProfiles.find((agentProfile) => String(agentProfile.id) === id);
+  const user = mockData.users.find((user) => user.id === agent.userId);
+  const owner = mockData.ownerProfiles.find((owner) => owner.userId == user.id)
+  const activity = mockData.allActivities.find((activity) => activity.userId = user.id)
+  const [selectedPostType, setSelectedPostType] = useState<
+    'Sale' | 'Rent' | null
+  >('Sale');
+  const [selectedPostStatus, setSelectedPostStatus] = useState<
+    'Sold' | 'Rented' | null
+  >('Sold');
 
   const saleProperties = mockData.properties.slice(0, 6).filter((property) => {
     const post = mockData.posts.find((post) => post.propertyId === property.id);
-    return post?.type === PostType.Sale;
+    if (!post) return false;
+    if (selectedPostType === 'Sale') {
+      return post.type === PostType.Sale;
+    } else {
+      return post.type === PostType.Rent;
+    }
   });
 
   const soldProperties = mockData.properties.filter((property) => {
     const post = mockData.posts.find((post) => post.propertyId === property.id);
-    return post && [PostStatus.Sold, PostStatus.Rented].includes(post.status);
+    if (!post) return false;
+    if (selectedPostStatus === 'Sold') {
+      return post.status === PostStatus.Sold;
+    } else if (selectedPostStatus === 'Rented') {
+      return post.status === PostStatus.Rented;
+    }
+    // return (post.status === PostStatus.Sold || post.status === PostStatus.Rented)
   });
 
   return (
     <section className="flex flex-col w-full gap-10 px-4 py-6 mx-auto sm:max-w-3xl md:max-w-4xl lg:max-w-7xl lg:px-0">
       <BreadcrumbNavigator
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Agents', href: '/agents' },
+          { label: t('home'), href: '/' },
+          { label: t('agents'), href: '/agents' },
           { label: id, isCurrent: true },
         ]}
       />
@@ -76,21 +117,21 @@ export const AgentDetails = () => {
       <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <AgentProfile
-            name="John Doe"
-            title="Senior Property Consultant"
+            name={user?.username}
+            title={user?.title}
             imageUrl="https://i.pravatar.cc/150?u=johndoe2"
-            location="No.1, Thiri Myitta Street, Hlaing Township, Yangon"
-            phone="+95 98887774422"
-            activeListings={10}
+            location={owner.address}
+            phone={owner.phone}
+            activeListings={activity.action}
           />
 
           <PropertyTypeStats
             stats={[
               '1 Apartment',
               '1 Condo',
-              '1 Homes',
-              '1 Office',
-              '1 Villas',
+              '1 Townhouse',
+              '1 Office_Space',
+              '1 Villa',
             ]}
           />
 
@@ -107,13 +148,17 @@ export const AgentDetails = () => {
       </div>
 
       <PropertyCardGroup
+        onChange={setSelectedPostType}
         properties={saleProperties}
-        title="Properties Available"
+        title={t('available_properties')}
+        filterType={'postType'}
       />
 
       <PropertyCardGroup
+        onChange={setSelectedPostStatus}
         properties={soldProperties}
         title="Properties Sold / Rented"
+        filterType={'postStatus'}
       />
     </section>
   );
