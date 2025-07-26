@@ -7,6 +7,7 @@ import { formatPath } from '@utils';
 import { FilterDropdown } from './PostSearchBar'; // adjust if needed
 import mockData from '@mocks';
 import { PostType } from '@types';
+import { useTranslation } from 'react-i18next';
 
 export const PostFilterCard = ({ postType }: { postType: PostType }) => {
   const [queryParams, setQueryParams] = useState<PostQueryParams>({
@@ -20,6 +21,7 @@ export const PostFilterCard = ({ postType }: { postType: PostType }) => {
   });
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleChange = (
     key: keyof PostQueryParams,
@@ -49,39 +51,44 @@ export const PostFilterCard = ({ postType }: { postType: PostType }) => {
 
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
         <FilterDropdown
-          label="Region"
+          label={t('select_region')}
           options={regions}
           value={queryParams.region || ''}
           onChange={(val) => handleChange('region', val)}
+          type="region"
         />
 
         <FilterDropdown
-          label="Township"
+          label={t('select_township')}
           options={townships}
           value={queryParams.township || ''}
           onChange={(val) => handleChange('township', val)}
+          type="township"
         />
 
         <FilterDropdown
-          label="Street"
+          label={t('select_street')}
           options={streets}
           value={queryParams.street || ''}
           onChange={(val) => handleChange('street', val)}
+          type="street"
         />
 
         <FilterDropdown
-          label="Property Type"
+          label={t('select_property_type')}
           options={propertyTypes}
           value={queryParams.propertyType || ''}
           onChange={(val) => handleChange('propertyType', val)}
+          type="property"
         />
 
         <FilterDropdown
           className="md:col-span-2"
-          label="Sale"
+          label={t(`${PostType.Sale.toLowerCase()}`)}
           options={[PostType.Sale, PostType.Rent, PostType.Lease]}
           value={queryParams.postType || PostType.Sale}
           onChange={(val) => handleChange('postType', val)}
+          type="postType"
         />
 
         <Input
@@ -111,7 +118,7 @@ export const PostFilterCard = ({ postType }: { postType: PostType }) => {
       </div>
 
       <Button onClick={applyFilters} size="lg" className="w-full">
-        Apply Filters
+        {t('search')}
       </Button>
     </Card>
   );

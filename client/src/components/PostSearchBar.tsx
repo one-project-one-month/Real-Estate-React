@@ -13,6 +13,7 @@ import { PostQueryParams } from '../types/post.type';
 import { initialize, getStates } from '@tm11/mmgeo';
 import { propertyTypes } from '../../../mocks/propertyTypes';
 import { parsePriceRange } from '@utils';
+import { useTranslation } from 'react-i18next';
 
 initialize({ language: 'eng' });
 
@@ -36,6 +37,7 @@ interface FilterDropdownProps {
   value: string;
   onChange: (value: string) => void;
   className?: string;
+  type?: string;
 }
 
 export const FilterDropdown = ({
@@ -44,7 +46,32 @@ export const FilterDropdown = ({
   value,
   onChange,
   className,
+  type = 'region',
 }: FilterDropdownProps) => {
+  const { t } = useTranslation();
+
+  const getTranslationKey = (val: string) => {
+    const formatted = val.toLowerCase().replace(/\s+/g, '_');
+    switch (type) {
+      case 'region':
+        return `regions_and_states.${formatted}`;
+      case 'property':
+        return `property_types.${formatted}`;
+      case 'township':
+        return `cities.${formatted}`;
+          case 'postType':
+        return `${formatted}`;
+      default:
+        return val;
+    }
+  };
+
+  const renderLabel = (val?: string) => {
+    if (!val) return label;
+    const key = getTranslationKey(val);
+    return key === val ? val : t(key);
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className={className}>
@@ -52,7 +79,8 @@ export const FilterDropdown = ({
           variant="secondary"
           className="flex items-center w-full h-10 gap-2 px-4 border rounded-md border-border"
         >
-          {value || label}
+          {renderLabel(value)}
+
           <ChevronDown size={16} className="ml-auto" />
         </Button>
       </DropdownMenuTrigger>
@@ -64,7 +92,7 @@ export const FilterDropdown = ({
               onClick={() => onChange(option)}
               className="cursor-pointer hover:bg-primary/10"
             >
-              {option}
+              {renderLabel(option)}
             </DropdownMenuItem>
           ))}
         </div>
@@ -88,6 +116,7 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
     township: '',
   });
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
+  const { t } = useTranslation();
 
   const states = getStates().map((state) => state.getName());
 
@@ -101,7 +130,8 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
                 variant="secondary"
                 className="flex items-center w-full h-10 gap-2 px-4 border rounded-md border-border md:w-auto"
               >
-                {searchQueryParams.postType.toUpperCase()}
+                {t(`${searchQueryParams.postType.toLowerCase()}`)}
+
                 <ChevronDown size={16} />
               </Button>
             </DropdownMenuTrigger>
@@ -117,7 +147,7 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
                   }
                   className="cursor-pointer hover:bg-primary/50"
                 >
-                  {option.toUpperCase()}
+                  {t(option.toLowerCase())}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
@@ -125,7 +155,7 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
         )}
 
         <Input
-          placeholder="Search by keywords"
+          placeholder={t('search')}
           className="w-full h-10 border-border"
           value={searchQueryParams.search || ''}
           onChange={(e) =>
@@ -140,14 +170,14 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
           className="w-full h-10 px-6 border border-l-0 rounded-md md:w-auto"
           onClick={() => onSearch(searchQueryParams)}
         >
-          Search
+          {t('search')}
         </Button>
       </div>
 
       {filterIncluded && (
         <div className="grid grid-cols-1 gap-3 mt-4 sm:grid-cols-2 md:grid-cols-3">
           <FilterDropdown
-            label="Select Region"
+            label={t('select_region')}
             options={states}
             value={searchQueryParams.region || ''}
             onChange={(value) =>
@@ -156,9 +186,10 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
                 region: value,
               }))
             }
+            type="region"
           />
           <FilterDropdown
-            label="Select Property Type"
+            label={t('select_property_type')}
             options={propertyTypes.map((type) => type.name)}
             value={searchQueryParams.propertyType || ''}
             onChange={(value) =>
@@ -167,9 +198,10 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
                 propertyType: value,
               }))
             }
+            type="property"
           />
           <FilterDropdown
-            label="Select Price Range"
+            label={t('select_price')}
             options={priceRangeOptions}
             value={selectedPriceRange}
             onChange={(value) => {
@@ -181,6 +213,7 @@ export const PostSearchBar: React.FC<PostSearchBarProps> = ({
                 maxPrice,
               }));
             }}
+            type="price"
           />
         </div>
       )}

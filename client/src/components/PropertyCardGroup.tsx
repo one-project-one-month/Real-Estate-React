@@ -1,6 +1,7 @@
 import { Property } from '@types';
 import { PropertyCard } from './PropertyCard';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const PropertyCardGroup = ({
   properties,
@@ -14,9 +15,10 @@ export const PropertyCardGroup = ({
   filterType: 'postType' | 'postStatus';
 }) => {
   if (!properties || properties.length === 0) {
+    const {t} = useTranslation();
     return (
       <div className="py-10 text-center text-gray-500">
-        <p>No properties found.</p>
+        <p>{t('not_found_property')}</p>
       </div>
     );
   }
@@ -41,6 +43,7 @@ const SaleRentFilter = ({
   filterType: 'postType' | 'postStatus';
 }) => {
   const [activeOne, setActiveOne] = useState<'Sale' | 'Rent'>('Sale');
+    const {t} = useTranslation();
 
   return (
     <div className="inline-flex py-5 rounded-md shadow-sm" role="group">
@@ -52,7 +55,7 @@ const SaleRentFilter = ({
         type="button"
         className={` ${activeOne === 'Sale' && 'border-secondary-foreground text-secondary-foreground'} px-4 py-2 text-sm font-medium bg-background border border-border rounded-l-lg hover:bg-gray-100 hover:text-secondary-foreground text-gray-500`}
       >
-        Sale
+        {t('sale')}
       </button>
       <button
         onClick={() => {
@@ -62,7 +65,7 @@ const SaleRentFilter = ({
         type="button"
         className={` ${activeOne === 'Rent' && 'border-secondary-foreground text-secondary-foreground'} px-4 py-2 text-sm font-medium bg-background border border-border rounded-r-lg hover:bg-gray-100 hover:text-secondary-foreground text-gray-500`}
       >
-        Rent
+           {t('rent')}
       </button>
     </div>
   );

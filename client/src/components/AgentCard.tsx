@@ -3,15 +3,17 @@ import { AgentProfile } from '../types/model.type';
 import { Button, Card, CardImage, CardContent } from '@ui';
 import { useNavigate } from 'react-router-dom';
 import mockData from '@mocks';
+import { useTranslation } from 'react-i18next';
 
 export const AgentCard: React.FC<{ agent: AgentProfile }> = ({ agent }) => {
   const nav = useNavigate();
+  const { t } = useTranslation();
   const matchedUser = mockData.users.find((user) => user.id === agent.userId);
 
   return (
     <Card className="relative flex flex-col gap-4 p-4 border sm:flex-row border-border">
       <span className="absolute text-sm top-4 right-4 text-destructive">
-        REF. {agent.id}
+        {t('ref')}. {agent.id}
       </span>
 
       <div className="flex flex-col items-center gap-4 sm:items-start sm:w-40">
@@ -23,11 +25,11 @@ export const AgentCard: React.FC<{ agent: AgentProfile }> = ({ agent }) => {
         <div className="flex flex-col w-full gap-2">
           <Button className="w-full">
             <Phone size={16} className="mr-2" />
-            Call
+            {t('call')}
           </Button>
           <Button className="w-full">
             <MessageCircle size={16} className="mr-2" />
-            Message
+            {t('message')}
           </Button>
         </div>
       </div>
@@ -44,11 +46,11 @@ export const AgentCard: React.FC<{ agent: AgentProfile }> = ({ agent }) => {
           </div>
 
           <div className="text-sm text-gray-600">
-            <span className="font-medium">CNA:</span> {agent.cnaNumber || 'N/A'}
+            <span className="font-medium">{t('cna')}:</span> {agent.cnaNumber || 'N/A'}
           </div>
 
           <div className="text-sm text-gray-600">
-            <span className="font-medium">License:</span>{' '}
+            <span className="font-medium">{t('license')}:</span>{' '}
             {agent.licenseNumber || 'N/A'}
           </div>
 
@@ -56,7 +58,7 @@ export const AgentCard: React.FC<{ agent: AgentProfile }> = ({ agent }) => {
             <div className="flex items-center justify-center gap-1 text-sm text-gray-500 sm:justify-start">
               <CalendarCheck size={14} />
               <span>
-                Joined{' '}
+                {t('joined')}{' '}
                 {new Date(matchedUser.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'short',
@@ -72,7 +74,7 @@ export const AgentCard: React.FC<{ agent: AgentProfile }> = ({ agent }) => {
             onClick={() => nav(`/agents/${agent.id}`)}
             className="px-4 py-2 text-xs font-semibold text-gray-700 transition border border-gray-300 rounded-md hover:bg-gray-100"
           >
-            View Details
+            {t('detail')}
           </button>
         </div>
       </div>

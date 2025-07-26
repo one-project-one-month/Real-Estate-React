@@ -9,24 +9,38 @@ import {
 } from '../components';
 import { MapPin } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface PropertyTypeStatsProps {
   stats: string[];
 }
 
-const PropertyTypeStats = ({ stats }: PropertyTypeStatsProps) => (
-  <div className="flex flex-wrap items-center gap-2 lg:gap-1 md:flex-nowrap">
-    {stats.map((item, idx) => (
-      <div key={idx} className="flex px-2">
-        <MapPin
-          size={16}
-          className="mt-0.5 mx-2 flex-shrink-0 text-secondary-foreground"
-        />
-        <span>{item}</span>
-      </div>
-    ))}
-  </div>
-);
+const PropertyTypeStats = ({ stats }: PropertyTypeStatsProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="flex flex-wrap items-center gap-2 lg:gap-1 md:flex-nowrap">
+      {stats.map((item, idx) => {
+        const [no, ...rest] = item.split(' ');
+        const property = rest.join(' ');
+        return (
+          <div key={idx} className="flex px-2">
+            <MapPin
+              size={16}
+              className="mt-0.5 mx-2 flex-shrink-0 text-secondary-foreground"
+            />
+            <span>
+              {no}{' '}
+              {t(
+                `property_types.${property.toLowerCase().replace(/\s+/g, '_')}`
+              )}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 interface AgentAboutProps {
   id: string;
@@ -34,24 +48,29 @@ interface AgentAboutProps {
   area: string;
 }
 
-export const AgentAbout = ({ id, bio, area }: AgentAboutProps) => (
-  <div className="flex flex-col gap-4 p-4 bg-white">
-    <h4 className="text-2xl font-semibold text-gray-800">About</h4>
-    <p className="text-sm leading-relaxed text-gray-500 sm:max-w-lg md:max-w-3xl">
-      {bio}
-    </p>
-    <h4 className="font-bold text-gray-800">
-      Agent Licence{' '}
-      <span className="text-sm font-normal text-gray-500">{id}</span>
-    </h4>
-    <h4 className="font-bold text-gray-800">
-      Service Area:{' '}
-      <span className="text-sm font-normal text-gray-500">{area}</span>
-    </h4>
-  </div>
-);
+export const AgentAbout = ({ id, bio, area }: AgentAboutProps) => {
+  const {t} = useTranslation();
+  return (
+    <div className="flex flex-col gap-4 p-4 bg-white">
+      <h4 className="text-2xl font-semibold text-gray-800">{t('about')}</h4>
+      <p className="text-sm leading-relaxed text-gray-500 sm:max-w-lg md:max-w-3xl">
+        {bio}
+      </p>
+      <h4 className="font-bold text-gray-800">
+       {t('license')}
+        <span className="text-sm font-normal text-gray-500">{id}</span>
+      </h4>
+      <h4 className="font-bold text-gray-800">
+         {t('service_area')}
+        <span className="text-sm font-normal text-gray-500">{area}</span>
+      </h4>
+    </div>
+  );
+};
 
 export const AgentDetails = () => {
+  const { t } = useTranslation();
+
   const { id } = useParams<{ id: string }>();
   const agent = mockData.agentProfiles.find((agentProfile) => String(agentProfile.id) === id);
   const user = mockData.users.find((user) => user.id === agent.userId);
@@ -89,8 +108,8 @@ export const AgentDetails = () => {
     <section className="flex flex-col w-full gap-10 px-4 py-6 mx-auto sm:max-w-3xl md:max-w-4xl lg:max-w-7xl lg:px-0">
       <BreadcrumbNavigator
         paths={[
-          { label: 'Home', href: '/' },
-          { label: 'Agents', href: '/agents' },
+          { label: t('home'), href: '/' },
+          { label: t('agents'), href: '/agents' },
           { label: id, isCurrent: true },
         ]}
       />
@@ -110,9 +129,9 @@ export const AgentDetails = () => {
             stats={[
               '1 Apartment',
               '1 Condo',
-              '1 Homes',
-              '1 Office',
-              '1 Villas',
+              '1 Townhouse',
+              '1 Office_Space',
+              '1 Villa',
             ]}
           />
 
@@ -131,7 +150,7 @@ export const AgentDetails = () => {
       <PropertyCardGroup
         onChange={setSelectedPostType}
         properties={saleProperties}
-        title="Properties Available"
+        title={t('available_properties')}
         filterType={'postType'}
       />
 
