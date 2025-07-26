@@ -6,7 +6,7 @@ interface AgentProfileProps {
   location: string;
   phone: string;
   imageUrl: string;
-  activeListings: number;
+  activeListings: string;
 }
 
 export const AgentProfile = ({
