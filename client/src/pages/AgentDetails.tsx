@@ -53,6 +53,10 @@ export const AgentAbout = ({ id, bio, area }: AgentAboutProps) => (
 
 export const AgentDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const agent = mockData.agentProfiles.find((agentProfile) => String(agentProfile.id) === id);
+  const user = mockData.users.find((user) => user.id === agent.userId);
+  const owner = mockData.ownerProfiles.find((owner) => owner.userId == user.id)
+  const activity = mockData.allActivities.find((activity) => activity.userId = user.id)
   const [selectedPostType, setSelectedPostType] = useState<
     'Sale' | 'Rent' | null
   >('Sale');
@@ -94,12 +98,12 @@ export const AgentDetails = () => {
       <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <AgentProfile
-            name="John Doe"
-            title="Senior Property Consultant"
+            name={user?.username}
+            title={user?.title}
             imageUrl="https://i.pravatar.cc/150?u=johndoe2"
-            location="No.1, Thiri Myitta Street, Hlaing Township, Yangon"
-            phone="+95 98887774422"
-            activeListings={10}
+            location={owner.address}
+            phone={owner.phone}
+            activeListings={activity.action}
           />
 
           <PropertyTypeStats

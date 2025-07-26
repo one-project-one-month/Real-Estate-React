@@ -28,6 +28,7 @@ export interface User {
   id: number;
   username: string;
   email: string;
+  title: string;
   photo?: string;
   password?: string;
   roleId: number;
@@ -131,6 +132,7 @@ export interface OwnerProfile {
   userId: number;
   nrcNo: string;
   address: string;
+  phone: string,
   user?: User;
 }
 
