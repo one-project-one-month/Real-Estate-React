@@ -1,5 +1,5 @@
 import { CalendarCheck, Mail, MessageCircle, Phone } from 'lucide-react';
-import { AgentProfile } from '../types/model.type';
+import { AgentProfile } from '@types';
 import { Button, Card, CardImage, CardContent } from '@ui';
 import { useNavigate } from 'react-router-dom';
 import mockData from '@mocks';
@@ -46,7 +46,8 @@ export const AgentCard: React.FC<{ agent: AgentProfile }> = ({ agent }) => {
           </div>
 
           <div className="text-sm text-gray-600">
-            <span className="font-medium">{t('cna')}:</span> {agent.cnaNumber || 'N/A'}
+            <span className="font-medium">{t('cna')}:</span>{' '}
+            {agent.cnaNumber || 'N/A'}
           </div>
 
           <div className="text-sm text-gray-600">

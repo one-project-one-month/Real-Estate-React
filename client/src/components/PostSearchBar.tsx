@@ -74,7 +74,7 @@ export const FilterDropdown = ({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={className}>
+      <DropdownMenuTrigger className={`${className} focus:outline-none `}>
         <Button
           variant="secondary"
           className="flex items-center w-full h-10 gap-2 px-4 border rounded-md border-border"
