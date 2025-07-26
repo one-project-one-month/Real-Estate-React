@@ -1,6 +1,8 @@
 import { Button } from '@ui';
+import { useTranslation } from 'react-i18next';
 
 const AdsCard = () => {
+  const { t } = useTranslation();
   return (
     <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
       {/* Ads card one */}
@@ -21,8 +23,8 @@ const AdsCard = () => {
                 className="w-full h-full"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center font-bold leading-tight text-center text-black">
-                <span className="text-lg">25%</span>
-                <span className="text-xs">Discount</span>
+                <span className="text-lg">{t("percentage")}</span>
+                <span className="text-xs">{t("discount")}</span>
               </div>
             </div>
           </div>
@@ -43,12 +45,12 @@ const AdsCard = () => {
               className="font-semibold text-white text-md"
               style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.3)' }}
             >
-              No.1 Best Condo in Myanmar
+              {t('no1_condo')}
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-center px-3 py-2 ml-auto text-black rounded-sm bg-gold w-fit">
-            <span className="text-xs">Price start at</span>
+            <span className="text-xs"> {t('price_start')}</span>
             <span className="font-semibold">$7000.00</span>
           </div>
         </div>
@@ -73,7 +75,7 @@ const AdsCard = () => {
             />
 
             <div className="px-4 py-2 bg-red-500 rounded-tl-2xl rounded-br-2xl">
-              Available now
+            {t('available_now')}
             </div>
           </div>
 
@@ -82,12 +84,12 @@ const AdsCard = () => {
               className="font-semibold text-white text-md"
               style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.3)' }}
             >
-              Office space at MICT Park
+               MICT Park {t('property_types.office_space')}
             </p>
           </div>
 
           <Button variant="white" className="rounded-sm w-fit" size="sm">
-            Contact now
+            {t('contact_now')}
           </Button>
         </div>
       </div>

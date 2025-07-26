@@ -6,6 +6,7 @@ import { FolderUp, Menu, X } from 'lucide-react';
 import { PostType } from '@types';
 import { useUserStore } from '../../stores/userStore';
 import { logOutAsync } from '../../services/auth.service';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderTabProps {
   children: React.ReactNode;
@@ -32,6 +33,12 @@ export const Header = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const currentUser = useUserStore((state) => state.user);
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const nextLang = i18n.language === 'en' ? 'my' : 'en';
+    i18n.changeLanguage(nextLang);
+  };
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -44,7 +51,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Properties
+        {t('properties')}
       </HeaderTab>
       <HeaderTab
         onClick={() => {
@@ -52,7 +59,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Agents
+        {t('agents')}
       </HeaderTab>
       <HeaderTab
         onClick={() => {
@@ -60,7 +67,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Your Wishlist
+        {t('wishlist')}
       </HeaderTab>
     </>
   );
@@ -80,7 +87,7 @@ export const Header = () => {
             </div>
           </div>
         ) : (
-          'My Account'
+          t('account')
         )}
       </HeaderTab>
     </>
@@ -94,7 +101,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Register
+        {t('register')}
       </HeaderTab>
       <HeaderTab
         onClick={() => {
@@ -102,7 +109,7 @@ export const Header = () => {
           closeMenu();
         }}
       >
-        Log in
+        {t('login')}
       </HeaderTab>
     </>
   );
@@ -125,13 +132,16 @@ export const Header = () => {
         <ul className="flex items-center gap-2">
           {currentUser === null ? noAccAuthNav : withAccAuthNav}
         </ul>
+        <Button onClick={toggleLanguage} size="md" variant="secondary">
+          {i18n.language === 'en' ? 'မြန်မာ' : 'English'}
+        </Button>
         <Button
           size="lg"
           variant="secondary"
           onClick={() => navigate('/upload')}
         >
           <FolderUp size={20} />
-          Upload
+          {t('upload')}
         </Button>
       </div>
 
@@ -149,6 +159,14 @@ export const Header = () => {
             {currentUser === null ? noAccAuthNav : withAccAuthNav}
           </ul>
           <Button
+            className="w-full mb-4 text-black"
+            onClick={toggleLanguage}
+            size="md"
+            variant="secondary"
+          >
+            {i18n.language === 'en' ? 'မြန်မာ' : 'English'}
+          </Button>
+          <Button
             size="lg"
             className="w-full"
             onClick={() => {
@@ -157,7 +175,7 @@ export const Header = () => {
             }}
           >
             <FolderUp size={20} />
-            Upload
+            {t('upload')}
           </Button>
         </div>
       )}

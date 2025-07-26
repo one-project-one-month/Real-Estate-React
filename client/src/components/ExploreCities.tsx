@@ -1,9 +1,11 @@
 import mockData from '@mocks';
 import { useNavigate } from 'react-router-dom';
 import { PostType } from '@types';
+import { useTranslation } from 'react-i18next';
 
 const CityCard = ({ name, count }: { name: string; count: number }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div
@@ -22,16 +24,19 @@ const CityCard = ({ name, count }: { name: string; count: number }) => {
         />
       </div>
       <div className="text-base font-semibold text-center text-black sm:text-lg">
-        {name}
+        {t(`cities.${name.toLowerCase().replace(/\s+/g, '_')}`)}
       </div>
       <div className="text-xs text-center text-gray-500 hover:underline sm:text-sm">
-        {count} Property{count !== 1 ? 'ies' : ''}
+        {/* {count} Property{count !== 1 ? 'ies' : ''} */}
+        {t('property_count', { count })}
       </div>
     </div>
   );
 };
 
 export const ExploreCities = () => {
+  const { t } = useTranslation();
+
   let topTownships: { township: string; propCount: number }[] = [];
   mockData.properties.forEach((prop) => {
     if (prop.township) {
@@ -53,10 +58,10 @@ export const ExploreCities = () => {
     <section className="w-full px-4 py-8 mx-auto sm:max-w-3xl md:max-w-4xl lg:max-w-7xl">
       <div className="flex flex-col items-center justify-center gap-2 pb-6">
         <h5 className="text-sm text-secondary-foreground sm:text-base">
-          Explore Cities
+          {t('explore_cities')}
         </h5>
         <h2 className="text-xl font-semibold text-center sm:text-2xl md:text-3xl">
-          Top Locations For You
+          {t('top_locations')}
         </h2>
       </div>
 

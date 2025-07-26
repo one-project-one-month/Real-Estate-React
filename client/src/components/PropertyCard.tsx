@@ -4,6 +4,7 @@ import { Property } from '@types';
 import { useNavigate } from 'react-router-dom';
 import { formatCurrency } from '@utils';
 import mockData from '@mocks';
+import { useTranslation } from 'react-i18next';
 
 type PropertyCardProps = {
   property: Property;
@@ -15,15 +16,22 @@ export const PropertyCard = ({
   variant = 'square',
 }: PropertyCardProps) => {
   const nav = useNavigate();
+  const { t } = useTranslation();
 
   const propertyType = mockData.propertyTypes.find(
     (type) => type.id === property.propertyTypeId
   );
 
+  const translatedTownship = t(
+    `cities.${property?.township?.toLowerCase().replace(/\s+/g, '_')}`
+  );
+  const street = property?.street || '';
+  const floor = property?.floor || '';
+
   const propertyInfo = (
     <>
       <h3 className="text-lg font-semibold text-black line-clamp-1">
-        {`${property.township}, ${property.street}, ${property.floor}`}
+        {`${translatedTownship}, ${street}, ${floor}`}
       </h3>
 
       <div className="flex flex-wrap gap-2">
@@ -33,7 +41,8 @@ export const PropertyCard = ({
             className="flex items-center gap-1 text-xs rounded-xl"
             size="sm"
           >
-            <Bath className="size-4" /> {property.bathRoom}-Bathroom
+            <Bath className="size-4" />
+            {property.bathRoom}-{t('bathroom').toLowerCase()}
           </Button>
         )}
         {property.bedRoom > 0 && (
@@ -42,7 +51,8 @@ export const PropertyCard = ({
             className="flex items-center gap-1 text-xs rounded-xl"
             size="sm"
           >
-            <Bed className="size-4" /> {property.bedRoom}-Bedroom
+            <Bed className="size-4" /> {property.bedRoom}-
+            {t('bedroom').toLowerCase()}
           </Button>
         )}
         <Button
@@ -51,7 +61,9 @@ export const PropertyCard = ({
           size="sm"
         >
           <Home className="size-4" />
-          {propertyType?.name}
+          {t(
+            `property_types.${propertyType?.name.toLowerCase().replace(/\s+/g, '_')}`
+          )}
         </Button>
       </div>
     </>
@@ -87,7 +99,7 @@ export const PropertyCard = ({
               size="lg"
               className="w-full sm:w-auto"
             >
-              View Property Details
+              {t('view_detail')}
             </Button>
           </CardFooter>
         </div>
@@ -121,7 +133,7 @@ export const PropertyCard = ({
           size="lg"
           className="w-full sm:w-auto"
         >
-          View Property Details
+          {t('view_detail')}
         </Button>
       </CardFooter>
     </Card>

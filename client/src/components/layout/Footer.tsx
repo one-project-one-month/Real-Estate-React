@@ -1,5 +1,6 @@
 import { Button } from '@ui';
 import { Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const SocialBubble = ({
   icon: Icon,
@@ -17,82 +18,89 @@ export const SocialBubble = ({
   </div>
 );
 
-const FooterCTA = () => (
-  <div className="relative flex flex-col items-center justify-around gap-6 px-4 py-10 overflow-hidden bg-primary text-primary-foreground md:flex-row">
-    <img
-      src="/footer-abstract-1.png"
-      className="absolute top-0 left-0 object-cover h-full pointer-events-none brightness-125"
-      alt=""
-    />
-    <img
-      src="/footer-abstract-2.png"
-      className="absolute top-0 right-0 object-cover h-full pointer-events-none brightness-125"
-      alt=""
-    />
+const FooterCTA = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="relative flex flex-col items-center justify-around gap-6 px-4 py-10 overflow-hidden bg-primary text-primary-foreground md:flex-row">
+      <img
+        src="/footer-abstract-1.png"
+        className="absolute top-0 left-0 object-cover h-full pointer-events-none brightness-125"
+        alt=""
+      />
+      <img
+        src="/footer-abstract-2.png"
+        className="absolute top-0 right-0 object-cover h-full pointer-events-none brightness-125"
+        alt=""
+      />
 
-    <div className="z-20 max-w-3xl space-y-4 text-center md:text-left">
-      <h2 className="text-xl font-semibold md:text-3xl">
-        Start Your Real Estate Journey Today
-      </h2>
-      <p className="font-light text-xs leading-[2.5] md:text-base">
-        Your dream property is just a click away. Whether you're searching for a
-        new home, a smart investment, or trustworthy real estate guidance,
-        Pwel-Sar is here to support you. Talk directly with our team — we're
-        ready to listen, answer your questions, and guide you every step of the
-        way.
-      </p>
+      <div className="z-20 max-w-3xl space-y-4 text-center md:text-left">
+        <h2 className="text-xl font-semibold md:text-3xl">
+          {t('footer.heading')}
+        </h2>
+        <p className="font-light text-xs leading-[2.5] md:text-base">
+          {t('footer.desc')}
+        </p>
+      </div>
+
+      <div className="z-20 mt-2 md:mt-0">
+        <Button variant="secondary" size="lg">
+          {t('footer.chat')}
+        </Button>
+      </div>
     </div>
+  );
+};
 
-    <div className="z-20 mt-2 md:mt-0">
-      <Button variant="secondary" size="lg">
-        Chat Now
-      </Button>
-    </div>
-  </div>
-);
+const EmailSubscription = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="flex flex-col items-center justify-center px-4 py-12 bg-secondary text-secondary-foreground">
+      <img src="../../assets/logo.svg" alt="logo" className="h-[3.5rem] mb-4" />
+      <h3 className="mb-6 text-sm text-center md:text-base">
+        {t('footer.sub_email')}{' '}
+      </h3>
 
-const EmailSubscription = () => (
-  <div className="flex flex-col items-center justify-center px-4 py-12 bg-secondary text-secondary-foreground">
-    <img src="../../assets/logo.svg" alt="logo" className="h-[3.5rem] mb-4" />
-    <h3 className="mb-6 text-sm text-center md:text-base">
-      Enter your email address to get the latest property notifications
-    </h3>
-
-    <div className="flex items-center w-full max-w-2xl gap-3 px-4 py-3 my-5 border rounded-md sm:flex-row border-secondary-foreground">
-      <div className="flex items-center w-full gap-3">
-        <img src="../../assets/mail.svg" className="w-5 h-5" alt="Mail Icon" />
-        <input
-          type="email"
-          placeholder="Your email address"
-          className="flex-1 text-sm text-black bg-transparent outline-none"
+      <div className="flex items-center w-full max-w-2xl gap-3 px-4 py-3 my-5 border rounded-md sm:flex-row border-secondary-foreground">
+        <div className="flex items-center w-full gap-3">
+          <img
+            src="../../assets/mail.svg"
+            className="w-5 h-5"
+            alt="Mail Icon"
+          />
+          <input
+            type="email"
+            placeholder={t('footer.email')}
+            className="flex-1 text-sm text-black bg-transparent outline-none"
+          />
+        </div>
+        <img
+          src="../../assets/send.svg"
+          className="w-5 h-5 cursor-pointer"
+          alt="Send Icon"
         />
       </div>
-      <img
-        src="../../assets/send.svg"
-        className="w-5 h-5 cursor-pointer"
-        alt="Send Icon"
-      />
     </div>
-  </div>
-);
+  );
+};
 
-const FooterBottom = () => (
-  <div className="flex flex-col items-center justify-between gap-3 px-5 py-6 md:flex-row bg-primary text-primary-foreground">
-    <div className="flex flex-wrap justify-center gap-3 text-xs text-center md:justify-start md:text-left">
-      <p className="cursor-pointer hover:underline">
-        ©2025 Pwel-Sar. All Rights Reserved.
-      </p>
-      <p className="cursor-pointer hover:underline">Terms & Conditions</p>
-    </div>
+const FooterBottom = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="flex flex-col items-center justify-between gap-3 px-5 py-6 md:flex-row bg-primary text-primary-foreground">
+      <div className="flex flex-wrap justify-center gap-3 text-xs text-center md:justify-start md:text-left">
+        <p className="cursor-pointer hover:underline">©2025 Pwel-Sar. {t('footer.footer_rights')}</p>
+        <p className="cursor-pointer hover:underline"> {t('footer.footer_terms')}</p>
+      </div>
 
-    <div className="flex gap-2">
-      <SocialBubble icon={Facebook} variant="secondary" />
-      <SocialBubble icon={Twitter} variant="secondary" />
-      <SocialBubble icon={Linkedin} variant="secondary" />
-      <SocialBubble icon={Youtube} variant="secondary" />
+      <div className="flex gap-2">
+        <SocialBubble icon={Facebook} variant="secondary" />
+        <SocialBubble icon={Twitter} variant="secondary" />
+        <SocialBubble icon={Linkedin} variant="secondary" />
+        <SocialBubble icon={Youtube} variant="secondary" />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const Footer = () => {
   return (
