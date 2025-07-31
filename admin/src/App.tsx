@@ -1,10 +1,14 @@
 import { Button } from '@ui';
 import { toast } from 'sonner';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AdminLoginForm } from './components';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Dashboard } from './pages';
 
 const App = () => {
+  const queryClient = new QueryClient();
   return (
-    <section>
+    <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
           <Route
@@ -15,9 +19,23 @@ const App = () => {
               </Button>
             }
           />
+          <Route
+            path="/admin/login"
+            element={
+              <div className="flex items-center justify-center h-screen">
+                <AdminLoginForm />
+              </div>
+            }
+          />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <Dashboard />
+            }
+          />
         </Routes>
       </Router>
-    </section>
+    </QueryClientProvider>
   );
 };
 
