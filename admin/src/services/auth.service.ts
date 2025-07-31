@@ -72,8 +72,7 @@ export const logOutAsync = async (id: number, access_token: string) => {
         },
       }
     );
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+
   } catch (err: any) {
     toast.error(err.message);
     throw new Error(err.message);

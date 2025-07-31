@@ -3,8 +3,6 @@ import { logOutAsync } from "../services/auth.service";
 import { useAdminStore } from "../stores/adminStore";
 import { useNavigate } from "react-router-dom";
 
-
-
 export const Dashboard = () => {
   const currentUser = useAdminStore((state) => state.user);
   const clearUser = useAdminStore((state) => state.clearUser);
