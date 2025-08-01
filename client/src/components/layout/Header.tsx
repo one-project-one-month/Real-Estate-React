@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logoSVG from '../../../assets/logo/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@ui';
-import { FolderUp, Menu, X } from 'lucide-react';
+import { FolderUp, Globe, Menu, X } from 'lucide-react';
 import { PostType } from '@types';
 import { useUserStore } from '../../stores/userStore';
 import { logOutAsync } from '../../services/auth.service';
@@ -132,7 +132,13 @@ export const Header = () => {
         <ul className="flex items-center gap-2">
           {currentUser === null ? noAccAuthNav : withAccAuthNav}
         </ul>
-        <Button onClick={toggleLanguage} size="md" variant="secondary">
+        <Button
+          onClick={toggleLanguage}
+          size="lg"
+          variant="secondary"
+          className="flex items-center"
+        >
+          <Globe />
           {i18n.language === 'en' ? 'မြန်မာ' : 'English'}
         </Button>
         <Button
@@ -146,37 +152,35 @@ export const Header = () => {
       </div>
 
       {/* Mobile Hamburger */}
-      <div className="block md:hidden">
+      <div className="block md:hidden ">
         <button onClick={toggleMenu}>
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {isMobileMenuOpen && (
-        <div className="absolute left-0 z-50 w-full px-5 py-4 border-t top-full bg-background border-border md:hidden">
+        <div className="absolute left-0 z-50 w-full px-5 py-4 shadow-md border-y top-full bg-background md:hidden border-border">
           <ul className="flex flex-col items-center gap-3 mb-4">{mainNav}</ul>
           <ul className="flex flex-col items-center gap-3 pt-3 mb-4 border-t border-border">
             {currentUser === null ? noAccAuthNav : withAccAuthNav}
           </ul>
-          <Button
-            className="w-full mb-4 text-black"
-            onClick={toggleLanguage}
-            size="md"
-            variant="secondary"
-          >
-            {i18n.language === 'en' ? 'မြန်မာ' : 'English'}
-          </Button>
-          <Button
-            size="lg"
-            className="w-full"
-            onClick={() => {
-              navigate('/upload');
-              closeMenu();
-            }}
-          >
-            <FolderUp size={20} />
-            {t('upload')}
-          </Button>
+          <div className="flex flex-col gap-3">
+            <Button className="w-full" onClick={toggleLanguage} size="lg">
+              <Globe />
+              {i18n.language === 'en' ? 'မြန်မာ' : 'English'}
+            </Button>
+            <Button
+              size="lg"
+              className="w-full"
+              onClick={() => {
+                navigate('/upload');
+                closeMenu();
+              }}
+            >
+              <FolderUp size={20} />
+              {t('upload')}
+            </Button>
+          </div>
         </div>
       )}
     </nav>

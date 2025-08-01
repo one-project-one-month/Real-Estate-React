@@ -1,0 +1,1 @@
+export { convertPostToProperty } from './propertyConverter';

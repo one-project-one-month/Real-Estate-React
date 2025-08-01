@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   PostSearchBar,
   ExploreOnMap,
@@ -7,38 +7,14 @@ import {
   BreadcrumbNavigator,
 } from '../components';
 import { PostQueryParams } from '../types/post.type';
-import { useEffect, useState } from 'react';
-import { Post, PostType } from '@types';
+import { PostType } from '@types';
 import mockData from '@mocks';
-import { filterPostsByQuery, formatPath } from '@utils';
+import { formatPath } from '@utils';
 import { useTranslation } from 'react-i18next';
 
 export const Properties = () => {
-  const [list, setList] = useState<Post[]>(mockData.posts);
   const navigate = useNavigate();
-  const location = useLocation();
-  const {t} = useTranslation();
-  const params = new URLSearchParams(location.search);
-
-  useEffect(() => {
-    const query: PostQueryParams = {
-      region: params.get('region') || undefined,
-      township: params.get('township') || undefined,
-      street: params.get('street') || undefined,
-      propertyType: params.get('propertyType') || undefined,
-      postType: params.get('postType') || undefined,
-      minPrice: params.get('minPrice')
-        ? Number(params.get('minPrice'))
-        : undefined,
-      maxPrice: params.get('maxPrice')
-        ? Number(params.get('maxPrice'))
-        : undefined,
-      search: params.get('search') || undefined,
-    };
-
-    const filteredList = filterPostsByQuery(query);
-    setList(filteredList);
-  }, [location.search]);
+  const { t } = useTranslation();
 
   const handleSearch = (query: PostQueryParams) => {
     const path = formatPath('/properties', query);
@@ -64,7 +40,7 @@ export const Properties = () => {
           <PostFilterCard postType={PostType.Sale} />
           <ExploreOnMap />
         </div>
-        <PostListing posts={list} />
+        <PostListing fallbackPosts={mockData.posts} />
       </section>
     </section>
   );
