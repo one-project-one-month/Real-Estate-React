@@ -7,7 +7,7 @@ import mockData from '@mocks';
 import { useTranslation } from 'react-i18next';
 
 type PropertyCardProps = {
-  property: Property;
+  property: Property | null;
   variant?: 'square' | 'horizontal';
 };
 
@@ -17,6 +17,11 @@ export const PropertyCard = ({
 }: PropertyCardProps) => {
   const nav = useNavigate();
   const { t } = useTranslation();
+
+  // Early return if property is null or undefined
+  if (!property) {
+    return null;
+  }
 
   const propertyType = mockData.propertyTypes.find(
     (type) => type.id === property.propertyTypeId
@@ -89,8 +94,7 @@ export const PropertyCard = ({
                 alt="agent"
               />
               <span className="text-sm font-semibold text-secondary-foreground">
-                {property.price &&
-                  formatCurrency(property.price, property.currency)}
+                {property.price && formatCurrency(property.price, 'MMK')}
               </span>
             </div>
             <Button
@@ -123,8 +127,7 @@ export const PropertyCard = ({
             alt="agent"
           />
           <span className="text-sm font-semibold text-secondary-foreground">
-            {property.price &&
-              formatCurrency(property.price, property.currency)}
+            {property.price && formatCurrency(property.price, 'MMK')}
           </span>
         </div>
         <Button
