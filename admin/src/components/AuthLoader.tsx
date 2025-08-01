@@ -1,7 +1,11 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect } from 'react';
 import { useAdminStore } from '../stores/adminStore';
-import { getCurrentUserAsync, refreshAccessTokenAsync } from "../services/auth.service";
-import { UserResponse } from "src/types/auth.type";
+import {
+  getCurrentUserAsync,
+  refreshAccessTokenAsync,
+} from '../services/auth.service';
+import { UserResponse } from 'src/types/auth.type';
+import { useMutation } from '@tanstack/react-query';
 
 interface AuthLoaderProps {
   children: ReactNode;
@@ -10,6 +14,8 @@ interface AuthLoaderProps {
 export const AuthLoader: React.FC<AuthLoaderProps> = ({ children }) => {
   const setUser = useAdminStore((state) => state.setUser);
   const clearUser = useAdminStore((state) => state.clearUser);
+  const getMeMutation = useMutation({ mutationFn: getCurrentUserAsync });
+  const refreshMutation = useMutation({ mutationFn: refreshAccessTokenAsync });
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -17,7 +23,8 @@ export const AuthLoader: React.FC<AuthLoaderProps> = ({ children }) => {
       const refreshToken = localStorage.getItem('refresh_token');
 
       try {
-        const admin: UserResponse = await getCurrentUserAsync(accessToken);
+        const admin: UserResponse =
+          await getMeMutation.mutateAsync(accessToken);
         setUser(admin);
       } catch (err: any) {
         if (
@@ -25,7 +32,12 @@ export const AuthLoader: React.FC<AuthLoaderProps> = ({ children }) => {
           err.message.toLowerCase().includes('unauthorized')
         ) {
           try {
-            const newAccessToken = await refreshAccessTokenAsync(refreshToken);
+            const newAccessToken =
+              await refreshMutation.mutateAsync(refreshToken);
+            localStorage.setItem('access_token', newAccessToken);
+            const admin: UserResponse =
+              await getMeMutation.mutateAsync(newAccessToken);
+            setUser(admin);
           } catch (refreshErr) {
             clearUser();
             localStorage.removeItem('access_token');
@@ -40,7 +52,6 @@ export const AuthLoader: React.FC<AuthLoaderProps> = ({ children }) => {
 
     fetchUser();
   }, [setUser, clearUser]);
-
 
   return <>{children}</>;
 };

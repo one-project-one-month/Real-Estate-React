@@ -13,7 +13,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route
-            path="/"
+            path="/login"
             element={
               <div className="flex items-center justify-center h-screen">
                 <AdminLoginForm />
@@ -21,17 +21,7 @@ const App = () => {
             }
           />
           <Route
-            path="/admin/login"
-            element={
-              <div className="flex items-center justify-center h-screen">
-                <Button variant="default" onClick={() => toast.success('Hello!')}>
-                  Click me
-                </Button>
-              </div>
-            }
-          />
-          <Route
-            path="/admin/dashboard"
+            path="/"
             element={
               <AuthLoader>
                 <Dashboard />
