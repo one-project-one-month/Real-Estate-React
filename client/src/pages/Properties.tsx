@@ -8,7 +8,6 @@ import {
 } from '../components';
 import { PostQueryParams } from '../types/post.type';
 import { PostType } from '@types';
-import mockData from '@mocks';
 import { formatPath } from '@utils';
 import { useTranslation } from 'react-i18next';
 
