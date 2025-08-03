@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@ui': path.resolve(__dirname, '../shared/ui/src'),
+      '@api': path.resolve(__dirname, '../shared/api/src'),
     },
   },
 });

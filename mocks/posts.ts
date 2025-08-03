@@ -12,7 +12,6 @@ export const posts: Post[] = [
     socialLink: 'https://facebook.com/john.agent',
     createdAt: '2025-02-01T00:00:00Z',
     description: 'Spacious property with modern amenities and great location.',
-    description: 'Spacious property with modern amenities and great location.',
   },
   {
     id: 2,
@@ -24,7 +23,6 @@ export const posts: Post[] = [
     phone: '+95923456789',
     socialLink: 'https://facebook.com/john.agent',
     createdAt: '2025-02-02T00:00:00Z',
-    description: 'Cozy rental property ideal for families and professionals.',
     description: 'Cozy rental property ideal for families and professionals.',
   },
   {
@@ -38,7 +36,6 @@ export const posts: Post[] = [
     socialLink: 'https://facebook.com/sarah.agent',
     createdAt: '2025-02-03T00:00:00Z',
     description: 'Beautiful home for sale with a large backyard.',
-    description: 'Beautiful home for sale with a large backyard.',
   },
   {
     id: 4,
@@ -50,7 +47,6 @@ export const posts: Post[] = [
     phone: '+95945678901',
     socialLink: 'https://facebook.com/sarah.agent',
     createdAt: '2025-02-04T00:00:00Z',
-    description: 'Affordable rental in a quiet neighborhood.',
     description: 'Affordable rental in a quiet neighborhood.',
   },
   {
@@ -64,7 +60,6 @@ export const posts: Post[] = [
     socialLink: 'https://facebook.com/emma.agent',
     createdAt: '2025-02-05T00:00:00Z',
     description: 'Modern apartment with all the essentials.',
-    description: 'Modern apartment with all the essentials.',
   },
   {
     id: 6,
@@ -76,7 +71,6 @@ export const posts: Post[] = [
     phone: '+95967890123',
     socialLink: 'https://facebook.com/emma.agent',
     createdAt: '2025-02-06T00:00:00Z',
-    description: 'Luxury property for sale with premium features.',
     description: 'Luxury property for sale with premium features.',
   },
   {
@@ -90,7 +84,6 @@ export const posts: Post[] = [
     socialLink: 'https://facebook.com/lisa.agent',
     createdAt: '2025-02-07T00:00:00Z',
     description: 'Comfortable rental close to public transport.',
-    description: 'Comfortable rental close to public transport.',
   },
   {
     id: 8,
@@ -102,7 +95,6 @@ export const posts: Post[] = [
     phone: '+95989012345',
     socialLink: 'https://facebook.com/lisa.agent',
     createdAt: '2025-02-08T00:00:00Z',
-    description: 'Lease opportunity in a prime location.',
     description: 'Lease opportunity in a prime location.',
   },
   {
@@ -116,7 +108,6 @@ export const posts: Post[] = [
     socialLink: 'https://facebook.com/jane.agent',
     createdAt: '2025-02-09T00:00:00Z',
     description: 'Charming home for sale with updated interiors.',
-    description: 'Charming home for sale with updated interiors.',
   },
   {
     id: 10,
@@ -128,7 +119,6 @@ export const posts: Post[] = [
     phone: '+95991234567',
     socialLink: 'https://facebook.com/oliver.owner',
     createdAt: '2025-02-10T00:00:00Z',
-    description: 'Spacious rental with excellent amenities.',
     description: 'Spacious rental with excellent amenities.',
   },
   {
@@ -142,7 +132,6 @@ export const posts: Post[] = [
     socialLink: 'https://facebook.com/lucas.agent',
     createdAt: '2025-02-11T00:00:00Z',
     description: 'Elegant property for sale in a sought-after area.',
-    description: 'Elegant property for sale in a sought-after area.',
   },
   {
     id: 12,
@@ -154,7 +143,6 @@ export const posts: Post[] = [
     phone: '+95993456789',
     socialLink: 'https://facebook.com/sophia.owner',
     createdAt: '2025-02-12T00:00:00Z',
-    description: 'Affordable rental with easy access to city center.',
     description: 'Affordable rental with easy access to city center.',
   },
   {
@@ -168,7 +156,6 @@ export const posts: Post[] = [
     socialLink: 'https://facebook.com/noah.agent',
     createdAt: '2025-02-13T00:00:00Z',
     description: 'Great lease option for small families or couples.',
-    description: 'Great lease option for small families or couples.',
   },
   {
     id: 14,
@@ -181,7 +168,6 @@ export const posts: Post[] = [
     socialLink: 'https://facebook.com/mia.owner',
     createdAt: '2025-02-14T00:00:00Z',
     description: 'Modern home for sale with smart features.',
-    description: 'Modern home for sale with smart features.',
   },
   {
     id: 15,
@@ -193,7 +179,6 @@ export const posts: Post[] = [
     phone: '+95996789012',
     socialLink: 'https://facebook.com/liam.agent',
     createdAt: '2025-02-15T00:00:00Z',
-    description: 'Rental property with a beautiful view.',
     description: 'Rental property with a beautiful view.',
   },
   {
