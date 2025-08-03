@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   PostSearchBar,
   ExploreOnMap,
@@ -8,12 +9,15 @@ import {
 } from '../components';
 import { PostQueryParams } from '../types/post.type';
 import { PostType } from '@types';
+import { PostType } from '@types';
 import mockData from '@mocks';
+import { formatPath } from '@utils';
 import { formatPath } from '@utils';
 import { useTranslation } from 'react-i18next';
 
 export const Properties = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { t } = useTranslation();
 
   const handleSearch = (query: PostQueryParams) => {
