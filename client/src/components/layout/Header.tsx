@@ -47,7 +47,8 @@ export const Header = () => {
     <>
       <HeaderTab
         onClick={() => {
-          navigate(`/properties?postType=${PostType.Sale}`);
+          // navigate(`/properties?postType=${PostType.Sale}`);
+          navigate('/properties');
           closeMenu();
         }}
       >

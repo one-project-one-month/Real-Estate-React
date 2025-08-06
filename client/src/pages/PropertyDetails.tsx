@@ -12,9 +12,10 @@ import {
 } from 'lucide-react';
 import { Button } from '@ui';
 import { BreadcrumbNavigator } from '../components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PostType } from '@types';
 import { useTranslation } from 'react-i18next';
+import { properties } from '../../../mocks/properties';
 
 interface ImageData {
   src: string;
@@ -33,6 +34,9 @@ const FeatureItem: React.FC<FeatureItemProps> = ({ children }) => (
 );
 
 export const PropertyDetails: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const property = properties.find((p) => String(p.id) === id);
+  const ownerId = property?.ownerId || '';
   const navigate = useNavigate();
   const { t } = useTranslation();
   const galleryImages: ImageData[] = [
@@ -100,25 +104,25 @@ export const PropertyDetails: React.FC = () => {
           { label: t('home'), href: '/' },
           {
             label: t('properties'),
-            href: `/properties?postType=${PostType.Sale}`,
+            href: `/properties`,
           },
-          { label: '1', isCurrent: true },
+          { label: property.township, isCurrent: true },
         ]}
       />{' '}
       <header className="flex items-start justify-between mb-6 md:flex-row md:items-center">
         <div>
           <h1 className="text-3xl font-bold md:text-4xl">
-            Seaside Serenity Villa
+            {property.buildingNumber}
           </h1>
           <div className="flex items-center gap-2 px-3 py-1 mt-2 text-gray-600 border border-gray-300 rounded-md w-fit">
             <MapPin size={16} />
-            <span>Malibu, California</span>
+            <span>{property.region}, {property.township}, {property.street}</span>
           </div>
         </div>
         <div className="mt-4 text-right md:mt-0">
           <p className="text-gray-500">{t('price')}</p>
           <p className="text-3xl font-semibold text-secondary-foreground">
-            $1,250,000
+            $ {property.price.toLocaleString()}
           </p>
         </div>
       </header>
@@ -188,7 +192,7 @@ export const PropertyDetails: React.FC = () => {
                   className="mx-auto mb-2 text-secondary-foreground"
                   size={35}
                 />
-                <p className="text-2xl font-semibold text-gray-800">04</p>
+                <p className="text-2xl font-semibold text-gray-800">{property.bedRoom}</p>
                 <p className="text-sm text-gray-500">{t('bedroom')}</p>
               </div>
               <div className="p-2">
@@ -196,12 +200,12 @@ export const PropertyDetails: React.FC = () => {
                   className="mx-auto mb-2 text-secondary-foreground"
                   size={35}
                 />
-                <p className="text-xl font-bold text-gray-800">03</p>
+                <p className="text-xl font-bold text-gray-800">{property.bathRoom}</p>
                 <p className="text-sm text-gray-500">{t('bathroom')}</p>
               </div>
               <div className="p-2">
                 <Square className="mx-auto mb-2 text-primary" size={35} />
-                <p className="text-xl font-bold text-gray-800">2,500</p>
+                <p className="text-xl font-bold text-gray-800">{property.length}</p>
                 <p className="text-sm text-gray-500">{t('square_feet')}</p>
               </div>
             </div>
