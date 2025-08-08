@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AdminLoginForm } from './components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Dashboard } from './pages';
+import { Admin, Dashboard } from './pages';
 import { AuthLoader } from './components/AuthLoader';
 
 const App = () => {
@@ -22,6 +22,14 @@ const App = () => {
           />
           <Route
             path="/"
+            element={
+              <AuthLoader>
+                <Admin />
+              </AuthLoader>
+            }
+          />
+          <Route
+            path="/dashboard"
             element={
               <AuthLoader>
                 <Dashboard />

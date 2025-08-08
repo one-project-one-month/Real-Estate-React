@@ -62,14 +62,16 @@ export const Header = () => {
       >
         {t('agents')}
       </HeaderTab>
-      <HeaderTab
-        onClick={() => {
-          navigate('/wishlist');
-          closeMenu();
-        }}
-      >
-        {t('wishlist')}
-      </HeaderTab>
+      {(currentUser &&
+        <HeaderTab
+          onClick={() => {
+            navigate('/wishlist');
+            closeMenu();
+          }}
+        >
+          {t('wishlist')}
+        </HeaderTab>
+      )}
     </>
   );
 
@@ -142,14 +144,16 @@ export const Header = () => {
           <Globe />
           {i18n.language === 'en' ? 'မြန်မာ' : 'English'}
         </Button>
-        <Button
-          size="lg"
-          variant="secondary"
-          onClick={() => navigate('/upload')}
-        >
-          <FolderUp size={20} />
-          {t('upload')}
-        </Button>
+        {currentUser && (
+          <Button
+            size="lg"
+            variant="secondary"
+            onClick={() => navigate('/upload')}
+          >
+            <FolderUp size={20} />
+            {t('upload')}
+          </Button>
+        )}
       </div>
 
       {/* Mobile Hamburger */}
