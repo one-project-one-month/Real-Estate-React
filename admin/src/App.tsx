@@ -3,8 +3,9 @@ import { toast } from 'sonner';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AdminLoginForm } from './components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Admin, Dashboard } from './pages';
+import { Admin, AgentList, Dashboard, OwnerList } from './pages';
 import { AuthLoader } from './components/AuthLoader';
+import { AdminLayout } from './components/Layouts/AdminLayout';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -31,9 +32,25 @@ const App = () => {
           <Route
             path="/dashboard"
             element={
-              <AuthLoader>
+              <AdminLayout>
                 <Dashboard />
-              </AuthLoader>
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/agentlist"
+            element={
+              <AdminLayout>
+                <AgentList />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/ownerlist"
+            element={
+              <AdminLayout>
+                <OwnerList />
+              </AdminLayout>
             }
           />
         </Routes>

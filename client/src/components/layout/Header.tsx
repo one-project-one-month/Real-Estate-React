@@ -77,6 +77,16 @@ export const Header = () => {
 
   const withAccAuthNav = currentUser ? (
     <>
+      {currentUser.role?.value === 'ADMIN' && (
+        <HeaderTab
+          onClick={() => {
+            window.open('/admin', '_blank');
+            closeMenu();
+          }}
+        >
+          Admin Panel
+        </HeaderTab>
+      )}
       <HeaderTab onClick={() => navigate('/me')}>
         {!isMobileMenuOpen ? (
           <div className="flex items-center justify-center gap-3">

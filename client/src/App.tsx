@@ -13,6 +13,7 @@ import {
 } from './pages';
 import { Layout, RegisterForm, LoginForm } from './components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { UserLayout } from './components/layout/UserLayout';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -81,9 +82,9 @@ const App = () => {
           <Route
             path="/me"
             element={
-              <Layout>
+              <UserLayout>
                 <MyProfile />
-              </Layout>
+              </UserLayout>
             }
           />
 

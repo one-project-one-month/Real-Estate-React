@@ -26,6 +26,7 @@ export type RegisterResponse = {
 };
 
 export type UserResponse = {
+  role: any;
   id: number;
   username: string;
   email: string;

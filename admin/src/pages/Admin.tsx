@@ -43,6 +43,7 @@ export const Admin = () => {
             settings, users, and more.
           </p>
           <ul>
+            <li>ID: {currentUser.id}</li>
             <li>Username: {currentUser.username}</li>
             <li>Email: {currentUser.email}</li>
             <li>Started at: {formatDate(currentUser.createdAt)}</li>
