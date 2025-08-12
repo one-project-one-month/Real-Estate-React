@@ -30,7 +30,7 @@ export const Sidebar = () => {
   ]
   return (
     <div className="w-64 h-screen border-r bg-muted p-4 flex flex-col">
-      <h1 className="text-xl font-bold mb-6">Pwel-Sar</h1>
+      <h1 className="flex gap-2 text-xl font-bold mb-6"><img src="../../assets/logo.svg" alt="logo" className="h-[1.8rem]" />Pwel-Sar</h1>
       <div className="space-y-2">
         {menuItems.map((item, index) => (
           <Button
